@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SDWebImageYYPlugin_Example' do
+  pod 'SDWebImageYYPlugin', :path => '../'
+
+  target 'SDWebImageYYPlugin_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
