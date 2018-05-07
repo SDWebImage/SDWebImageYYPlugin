@@ -7,6 +7,7 @@
 //
 
 #import "SDViewController.h"
+#import <SDWebImageYYPlugin/SDWebImageYYPlugin.h>
 
 @interface SDViewController ()
 
