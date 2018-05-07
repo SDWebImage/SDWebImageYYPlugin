@@ -11,9 +11,10 @@
 #endif
 
 // YYCache
-#if __has_include(<SDWebImageYYPlugin/YYDiskCache+SDAddtions.h>)
-#import <SDWebImageYYPlugin/YYDiskCache+SDAddtions.h>
+#if __has_include(<SDWebImageYYPlugin/YYCache+SDAddtions.h>)
+#import <SDWebImageYYPlugin/YYCache+SDAddtions.h>
 #import <SDWebImageYYPlugin/YYMemoryCache+SDAddtions.h>
+#import <SDWebImageYYPlugin/YYDiskCache+SDAddtions.h>
 #endif
 
 // YYImage
