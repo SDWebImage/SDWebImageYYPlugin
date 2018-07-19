@@ -21,20 +21,19 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/DreamPiggy/SDWebImageYYPlugin'
+  s.homepage         = 'https://github.com/SDWebImage/SDWebImageYYPlugin'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'DreamPiggy' => 'lizhuoli1126@126.com' }
-  s.source           = { :git => 'https://github.com/DreamPiggy/SDWebImageYYPlugin.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/SDWebImage/SDWebImageYYPlugin.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
-  s.tvos.deployment_target = '9.0'
 
   s.source_files = 'SDWebImageYYPlugin/Module/SDWebImageYYPlugin.h'
   s.module_map = 'SDWebImageYYPlugin/Module/SDWebImageYYPlugin.modulemap'
 
-  s.dependency 'SDWebImage/Core'
+  s.dependency 'SDWebImage/Core', '>= 5.0.0-beta'
 
   s.subspec 'YYCache' do |ss|
     ss.dependency 'YYCache'
@@ -42,7 +41,7 @@ TODO: Add long description of the pod here.
   end
 
   s.subspec 'YYImage' do |ss|
-    ss.dependency 'YYImage'
+    ss.dependency 'YYImage/Core'
     ss.source_files = 'SDWebImageYYPlugin/Classes/YYImage/**/*'
   end
 end

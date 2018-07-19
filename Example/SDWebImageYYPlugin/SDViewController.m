@@ -8,8 +8,11 @@
 
 #import "SDViewController.h"
 #import <SDWebImageYYPlugin/SDWebImageYYPlugin.h>
+#import <YYImage/YYImage.h>
 
 @interface SDViewController ()
+
+@property (nonatomic, strong) YYAnimatedImageView *imageView;
 
 @end
 
@@ -18,13 +21,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    [self.view addSubview:self.imageView];
+    
+    NSURL *url = [NSURL URLWithString:@"http://apng.onevcat.com/assets/elephant.png"];
+    [self.imageView sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        NSLog(@"%@", error);
+    }];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (YYAnimatedImageView *)imageView {
+    if (!_imageView) {
+        _imageView = [[YYAnimatedImageView alloc] initWithFrame:self.view.bounds];
+        _imageView.contentMode = UIViewContentModeScaleAspectFit;
+        _imageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+    }
+    return _imageView;
 }
 
 @end

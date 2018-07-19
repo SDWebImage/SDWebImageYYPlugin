@@ -28,25 +28,38 @@ static NSData * SDYYPluginCacheDataWithImageData(UIImage *image, NSData *imageDa
 
 @implementation YYCache (SDAddtions)
 
-- (id<SDWebImageOperation>)queryImageForKey:(NSString *)key options:(SDWebImageOptions)options context:(SDWebImageContext *)context completion:(SDImageCacheQueryCompletionBlock)completionBlock {
+- (id<SDWebImageOperation>)queryImageForKey:(NSString *)key options:(SDWebImageOptions)options context:(SDWebImageContext *)context completion:(SDImageCacheQueryCompletionBlock)doneBlock {
     if (!key) {
-        if (completionBlock) {
-            completionBlock(nil, nil, SDImageCacheTypeNone);
+        if (doneBlock) {
+            doneBlock(nil, nil, SDImageCacheTypeNone);
         }
         return nil;
+    }
+    
+    if ([context valueForKey:SDWebImageContextImageTransformer]) {
+        // grab the transformed disk image if transformer provided
+        id<SDImageTransformer> transformer = [context valueForKey:SDWebImageContextImageTransformer];
+        NSString *transformerKey = [transformer transformerKey];
+        key = SDTransformedKeyForKey(key, transformerKey);
     }
     
     // First check the in-memory cache...
     UIImage *image = [self.memoryCache objectForKey:key];
-    BOOL shouldQueryMemoryOnly = ([image isKindOfClass:[UIImage class]] && !(options & SDImageCacheQueryDataWhenInMemory));
+    BOOL shouldQueryMemoryOnly = (image && !(options & SDImageCacheQueryMemoryData));
     if (shouldQueryMemoryOnly) {
-        if (completionBlock) {
-            completionBlock(image, nil, SDImageCacheTypeMemory);
+        if (doneBlock) {
+            doneBlock(image, nil, SDImageCacheTypeMemory);
         }
         return nil;
     }
     
+    // Second check the disk cache...
     NSOperation *operation = [NSOperation new];
+    // Check whether we need to synchronously query disk
+    // 1. in-memory cache hit & memoryDataSync
+    // 2. in-memory cache miss & diskDataSync
+    BOOL shouldQueryDiskSync = ((image && options & SDImageCacheQueryMemoryDataSync) ||
+                                (!image && options & SDImageCacheQueryDiskDataSync));
     void(^queryDiskBlock)(NSData *) =  ^(NSData *diskData){
         if (operation.isCancelled) {
             // do not call the completion if cancelled
@@ -57,17 +70,10 @@ static NSData * SDYYPluginCacheDataWithImageData(UIImage *image, NSData *imageDa
             UIImage *diskImage;
             SDImageCacheType cacheType = SDImageCacheTypeDisk;
             if (image) {
-                // the image is from in-memory cache
+                // the image is from in-memory cache, but need image data
                 diskImage = image;
                 cacheType = SDImageCacheTypeMemory;
             } else if (diskData) {
-                NSString *cacheKey = key;
-                if ([context valueForKey:SDWebImageContextImageTransformer]) {
-                    // grab the transformed disk image if transformer provided
-                    id<SDImageTransformer> transformer = [context valueForKey:SDWebImageContextImageTransformer];
-                    NSString *transformerKey = [transformer transformerKey];
-                    cacheKey = SDTransformedKeyForKey(key, transformerKey);
-                }
                 // decode image data only if in-memory cache missed
                 diskImage = SDImageCacheDecodeImageData(diskData, key, options, context);
                 if (diskImage) {
@@ -76,19 +82,19 @@ static NSData * SDYYPluginCacheDataWithImageData(UIImage *image, NSData *imageDa
                 }
             }
             
-            if (completionBlock) {
-                if (options & SDImageCacheQueryDiskSync) {
-                    completionBlock(diskImage, diskData, cacheType);
+            if (doneBlock) {
+                if (shouldQueryDiskSync) {
+                    doneBlock(diskImage, diskData, cacheType);
                 } else {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        completionBlock(diskImage, diskData, cacheType);
+                        doneBlock(diskImage, diskData, cacheType);
                     });
                 }
             }
         }
     };
     
-    if (options & SDImageCacheQueryDiskSync) {
+    if (shouldQueryDiskSync) {
         NSData *diskData = [self.diskCache dataForKey:key];
         queryDiskBlock(diskData);
     } else {
