@@ -37,11 +37,11 @@ TODO: Add long description of the pod here.
 
   s.subspec 'YYCache' do |ss|
     ss.dependency 'YYCache'
-    ss.source_files = 'SDWebImageYYPlugin/Classes/YYCache/**/*'
+    ss.source_files = 'SDWebImageYYPlugin/Classes/YYCache/**/*', 'SDWebImageYYPlugin/Module/SDWebImageYYPlugin.h'
   end
 
   s.subspec 'YYImage' do |ss|
     ss.dependency 'YYImage/Core'
-    ss.source_files = 'SDWebImageYYPlugin/Classes/YYImage/**/*'
+    ss.source_files = 'SDWebImageYYPlugin/Classes/YYImage/**/*', 'SDWebImageYYPlugin/Module/SDWebImageYYPlugin.h'
   end
 end
