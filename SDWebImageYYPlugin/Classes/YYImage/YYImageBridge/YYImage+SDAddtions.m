@@ -11,10 +11,13 @@
 
 #pragma mark - SDAnimatedImage
 
-- (instancetype)initWithAnimatedCoder:(id<SDAnimatedImageCoder>)animatedCoder scale:(CGFloat)scale {
-    // Call `YYImage`'s initializer with animated image data
-    NSData *data = animatedCoder.animatedImageData;
+- (instancetype)initWithData:(NSData *)data scale:(CGFloat)scale options:(SDImageCoderOptions *)options {
     return [self initWithData:data scale:scale];
+}
+
+- (instancetype)initWithAnimatedCoder:(id<SDAnimatedImageCoder>)animatedCoder scale:(CGFloat)scale {
+    // YYImage does not support progressive animation decoding
+    return nil;
 }
 
 - (void)preloadAllFrames {
