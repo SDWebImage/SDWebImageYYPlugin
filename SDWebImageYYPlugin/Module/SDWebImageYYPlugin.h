@@ -22,6 +22,7 @@
 #import <SDWebImageYYPlugin/SDAnimatedImage+YYAddtions.h>
 #import <SDWebImageYYPlugin/YYAnimatedImageView+WebCache.h>
 #import <SDWebImageYYPlugin/YYImage+SDAddtions.h>
+#import <SDWebImageYYPlugin/SDImageYYCoder.h>
 #endif
 
 FOUNDATION_EXPORT double SDWebImageYYPluginVersionNumber;
