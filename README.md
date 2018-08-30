@@ -1,6 +1,6 @@
 # SDWebImageYYPlugin
 
-[![CI Status](https://img.shields.io/travis/DreamPiggy/SDWebImageYYPlugin.svg?style=flat)](https://travis-ci.org/DreamPiggy/SDWebImageYYPlugin)
+[![CI Status](https://img.shields.io/travis/SDWebImage/SDWebImageYYPlugin.svg?style=flat)](https://travis-ci.org/SDWebImage/SDWebImageYYPlugin)
 [![Version](https://img.shields.io/cocoapods/v/SDWebImageYYPlugin.svg?style=flat)](https://cocoapods.org/pods/SDWebImageYYPlugin)
 [![License](https://img.shields.io/cocoapods/l/SDWebImageYYPlugin.svg?style=flat)](https://cocoapods.org/pods/SDWebImageYYPlugin)
 [![Platform](https://img.shields.io/cocoapods/p/SDWebImageYYPlugin.svg?style=flat)](https://cocoapods.org/pods/SDWebImageYYPlugin)
