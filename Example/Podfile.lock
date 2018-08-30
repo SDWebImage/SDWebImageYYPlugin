@@ -14,7 +14,7 @@ PODS:
   - YYImage/Core (1.0.4)
 
 DEPENDENCIES:
-  - "SDWebImage/Core (from `git@github.com:rs/SDWebImage.git`, branch `5.x`)"
+  - SDWebImage/Core (from `https://github.com/rs/SDWebImage.git`, branch `5.x`)
   - SDWebImageYYPlugin (from `../`)
 
 SPEC REPOS:
@@ -25,14 +25,14 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   SDWebImage:
     :branch: 5.x
-    :git: "git@github.com:rs/SDWebImage.git"
+    :git: https://github.com/rs/SDWebImage.git
   SDWebImageYYPlugin:
     :path: "../"
 
 CHECKOUT OPTIONS:
   SDWebImage:
     :commit: 1ed0b8cfe86066ea28093406fcd859efd40c9d96
-    :git: "git@github.com:rs/SDWebImage.git"
+    :git: https://github.com/rs/SDWebImage.git
 
 SPEC CHECKSUMS:
   SDWebImage: e52654ceef9fdc19f4c612d64a5b6d3f05dd81a4
@@ -40,6 +40,6 @@ SPEC CHECKSUMS:
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
 
-PODFILE CHECKSUM: 2d666caa89bdb2aeafda680d6d51eb9789e53f2e
+PODFILE CHECKSUM: 48b9bc55ce06154a2d7c5b440dd3d07115716ce3
 
 COCOAPODS: 1.5.3
