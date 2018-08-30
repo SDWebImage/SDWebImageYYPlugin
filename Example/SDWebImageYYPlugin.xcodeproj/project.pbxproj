@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		014579F74130BADB370B26C0 /* Pods_SDWebImageYYPlugin_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E469A7E83545C1A23897BF /* Pods_SDWebImageYYPlugin_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -22,8 +21,9 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
+		7627DE0857600EEE0189B0BF /* Pods_SDWebImageYYPlugin_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1A4EA0620666F03BDD4C4CA /* Pods_SDWebImageYYPlugin_Tests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		D8F886D29E0FA3402C9BDDA3 /* Pods_SDWebImageYYPlugin_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0036F97FA9922752613A0D /* Pods_SDWebImageYYPlugin_Example.framework */; };
+		ECAD3C2D64807A37AF113FEA /* Pods_SDWebImageYYPlugin_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25660C1921879079816CF53D /* Pods_SDWebImageYYPlugin_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,10 +39,8 @@
 /* Begin PBXFileReference section */
 		0BE40967A35C3E36B42D15F4 /* SDWebImageYYPlugin.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SDWebImageYYPlugin.podspec; path = ../SDWebImageYYPlugin.podspec; sourceTree = "<group>"; };
 		1F3130FE6E642E621C8F9D2C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		23EECF2B35761746DFB908D5 /* Pods-SDWebImageYYPlugin_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageYYPlugin_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageYYPlugin_Example/Pods-SDWebImageYYPlugin_Example.release.xcconfig"; sourceTree = "<group>"; };
-		2F0036F97FA9922752613A0D /* Pods_SDWebImageYYPlugin_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDWebImageYYPlugin_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		42C7BDF1491613FEA66C7E10 /* Pods-SDWebImageYYPlugin_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageYYPlugin_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageYYPlugin_Tests/Pods-SDWebImageYYPlugin_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		5948612A6398B7A15CC34865 /* Pods-SDWebImageYYPlugin_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageYYPlugin_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageYYPlugin_Tests/Pods-SDWebImageYYPlugin_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		25660C1921879079816CF53D /* Pods_SDWebImageYYPlugin_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDWebImageYYPlugin_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C9C832718252AAAF79D98FE /* Pods-SDWebImageYYPlugin_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageYYPlugin_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageYYPlugin_Tests/Pods-SDWebImageYYPlugin_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* SDWebImageYYPlugin_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDWebImageYYPlugin_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -63,9 +61,11 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		81EE1C5A2EC4BF351E15068D /* Pods-SDWebImageYYPlugin_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageYYPlugin_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageYYPlugin_Example/Pods-SDWebImageYYPlugin_Example.release.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B6E469A7E83545C1A23897BF /* Pods_SDWebImageYYPlugin_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDWebImageYYPlugin_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C307C0415ABD5E3A501DA812 /* Pods-SDWebImageYYPlugin_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageYYPlugin_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageYYPlugin_Example/Pods-SDWebImageYYPlugin_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		89074726904FF3052A5D23D9 /* Pods-SDWebImageYYPlugin_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageYYPlugin_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageYYPlugin_Tests/Pods-SDWebImageYYPlugin_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		D1A4EA0620666F03BDD4C4CA /* Pods_SDWebImageYYPlugin_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDWebImageYYPlugin_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA1F50918919E6B01971B7CB /* Pods-SDWebImageYYPlugin_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageYYPlugin_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageYYPlugin_Example/Pods-SDWebImageYYPlugin_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		F8CA3663355A4F134162F956 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,7 +77,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				D8F886D29E0FA3402C9BDDA3 /* Pods_SDWebImageYYPlugin_Example.framework in Frameworks */,
+				ECAD3C2D64807A37AF113FEA /* Pods_SDWebImageYYPlugin_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,24 +88,13 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				014579F74130BADB370B26C0 /* Pods_SDWebImageYYPlugin_Tests.framework in Frameworks */,
+				7627DE0857600EEE0189B0BF /* Pods_SDWebImageYYPlugin_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		03FCB093EB4EFF6D3F5C521B /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C307C0415ABD5E3A501DA812 /* Pods-SDWebImageYYPlugin_Example.debug.xcconfig */,
-				23EECF2B35761746DFB908D5 /* Pods-SDWebImageYYPlugin_Example.release.xcconfig */,
-				5948612A6398B7A15CC34865 /* Pods-SDWebImageYYPlugin_Tests.debug.xcconfig */,
-				42C7BDF1491613FEA66C7E10 /* Pods-SDWebImageYYPlugin_Tests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
@@ -114,7 +103,7 @@
 				6003F5B5195388D20070C39A /* Tests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
-				03FCB093EB4EFF6D3F5C521B /* Pods */,
+				6E3B1508C94E61E4B350BEDE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,8 +123,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				2F0036F97FA9922752613A0D /* Pods_SDWebImageYYPlugin_Example.framework */,
-				B6E469A7E83545C1A23897BF /* Pods_SDWebImageYYPlugin_Tests.framework */,
+				25660C1921879079816CF53D /* Pods_SDWebImageYYPlugin_Example.framework */,
+				D1A4EA0620666F03BDD4C4CA /* Pods_SDWebImageYYPlugin_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -196,6 +185,17 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		6E3B1508C94E61E4B350BEDE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EA1F50918919E6B01971B7CB /* Pods-SDWebImageYYPlugin_Example.debug.xcconfig */,
+				81EE1C5A2EC4BF351E15068D /* Pods-SDWebImageYYPlugin_Example.release.xcconfig */,
+				89074726904FF3052A5D23D9 /* Pods-SDWebImageYYPlugin_Tests.debug.xcconfig */,
+				5C9C832718252AAAF79D98FE /* Pods-SDWebImageYYPlugin_Tests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -203,11 +203,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "SDWebImageYYPlugin_Example" */;
 			buildPhases = (
-				C81BC470EE9B0E4E27385425 /* [CP] Check Pods Manifest.lock */,
+				9AC01101C9614FE1E4B6AD75 /* [CP] Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				053E29CB027BC9446808DA05 /* [CP] Embed Pods Frameworks */,
+				A1C9798AC9A64B3285935ADE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -222,7 +222,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "SDWebImageYYPlugin_Tests" */;
 			buildPhases = (
-				56E885A70EC351C1F1512B57 /* [CP] Check Pods Manifest.lock */,
+				0C5606D06E2CBD1FF0BCA1FB /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
@@ -294,10 +294,56 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		053E29CB027BC9446808DA05 /* [CP] Embed Pods Frameworks */ = {
+		0C5606D06E2CBD1FF0BCA1FB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SDWebImageYYPlugin_Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9AC01101C9614FE1E4B6AD75 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SDWebImageYYPlugin_Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1C9798AC9A64B3285935ADE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImageYYPlugin_Example/Pods-SDWebImageYYPlugin_Example-frameworks.sh",
@@ -307,6 +353,8 @@
 				"${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImageYYPlugin.framework",
@@ -316,42 +364,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImageYYPlugin_Example/Pods-SDWebImageYYPlugin_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		56E885A70EC351C1F1512B57 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SDWebImageYYPlugin_Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C81BC470EE9B0E4E27385425 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SDWebImageYYPlugin_Example-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -514,7 +526,7 @@
 		};
 		6003F5C0195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C307C0415ABD5E3A501DA812 /* Pods-SDWebImageYYPlugin_Example.debug.xcconfig */;
+			baseConfigurationReference = EA1F50918919E6B01971B7CB /* Pods-SDWebImageYYPlugin_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -529,7 +541,7 @@
 		};
 		6003F5C1195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 23EECF2B35761746DFB908D5 /* Pods-SDWebImageYYPlugin_Example.release.xcconfig */;
+			baseConfigurationReference = 81EE1C5A2EC4BF351E15068D /* Pods-SDWebImageYYPlugin_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -544,7 +556,7 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5948612A6398B7A15CC34865 /* Pods-SDWebImageYYPlugin_Tests.debug.xcconfig */;
+			baseConfigurationReference = 89074726904FF3052A5D23D9 /* Pods-SDWebImageYYPlugin_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -568,7 +580,7 @@
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 42C7BDF1491613FEA66C7E10 /* Pods-SDWebImageYYPlugin_Tests.release.xcconfig */;
+			baseConfigurationReference = 5C9C832718252AAAF79D98FE /* Pods-SDWebImageYYPlugin_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (

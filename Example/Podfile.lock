@@ -1,5 +1,5 @@
 PODS:
-  - SDWebImage/Core (5.0.0-beta2)
+  - SDWebImage/Core (5.0.0-beta3)
   - SDWebImageYYPlugin (0.1.0):
     - SDWebImage/Core (>= 5.0.0-beta)
     - SDWebImageYYPlugin/YYCache (= 0.1.0)
@@ -31,11 +31,11 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SDWebImage:
-    :commit: 2bb336bc12a5690dd11988c0bc8bef2c7318508d
+    :commit: 1ed0b8cfe86066ea28093406fcd859efd40c9d96
     :git: "git@github.com:rs/SDWebImage.git"
 
 SPEC CHECKSUMS:
-  SDWebImage: 8e4aaf5805e954ad426702adf5a8c012a7f581d1
+  SDWebImage: e52654ceef9fdc19f4c612d64a5b6d3f05dd81a4
   SDWebImageYYPlugin: 4a756eec055647c989fe9d54f9535780bc0e0465
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
