@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		325E281C213CF8CB00044370 /* SDTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 325E281B213CF8CB00044370 /* SDTestCase.m */; };
+		325E281F213CF94900044370 /* SDYYImageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 325E281D213CF94900044370 /* SDYYImageTests.m */; };
+		325E2823213CFA2A00044370 /* SDYYCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 325E2822213CFA2A00044370 /* SDYYCacheTests.m */; };
+		325E2826213CFB2300044370 /* TestImage.gif in Resources */ = {isa = PBXBuildFile; fileRef = 325E2825213CFB2300044370 /* TestImage.gif */; };
+		325E282C213D01AD00044370 /* TestImageAnimated.apng in Resources */ = {isa = PBXBuildFile; fileRef = 325E2829213D01AD00044370 /* TestImageAnimated.apng */; };
+		325E282D213D01AD00044370 /* TestImageStatic.webp in Resources */ = {isa = PBXBuildFile; fileRef = 325E282A213D01AD00044370 /* TestImageStatic.webp */; };
+		325E282E213D01AD00044370 /* TestImageAnimated.webp in Resources */ = {isa = PBXBuildFile; fileRef = 325E282B213D01AD00044370 /* TestImageAnimated.webp */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -19,7 +26,6 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		7627DE0857600EEE0189B0BF /* Pods_SDWebImageYYPlugin_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1A4EA0620666F03BDD4C4CA /* Pods_SDWebImageYYPlugin_Tests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
@@ -40,6 +46,14 @@
 		0BE40967A35C3E36B42D15F4 /* SDWebImageYYPlugin.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SDWebImageYYPlugin.podspec; path = ../SDWebImageYYPlugin.podspec; sourceTree = "<group>"; };
 		1F3130FE6E642E621C8F9D2C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		25660C1921879079816CF53D /* Pods_SDWebImageYYPlugin_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDWebImageYYPlugin_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		325E281A213CF8CB00044370 /* SDTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTestCase.h; sourceTree = "<group>"; };
+		325E281B213CF8CB00044370 /* SDTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTestCase.m; sourceTree = "<group>"; };
+		325E281D213CF94900044370 /* SDYYImageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDYYImageTests.m; sourceTree = "<group>"; };
+		325E2822213CFA2A00044370 /* SDYYCacheTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDYYCacheTests.m; sourceTree = "<group>"; };
+		325E2825213CFB2300044370 /* TestImage.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TestImage.gif; sourceTree = "<group>"; };
+		325E2829213D01AD00044370 /* TestImageAnimated.apng */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestImageAnimated.apng; sourceTree = "<group>"; };
+		325E282A213D01AD00044370 /* TestImageStatic.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestImageStatic.webp; sourceTree = "<group>"; };
+		325E282B213D01AD00044370 /* TestImageAnimated.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestImageAnimated.webp; sourceTree = "<group>"; };
 		5C9C832718252AAAF79D98FE /* Pods-SDWebImageYYPlugin_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageYYPlugin_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageYYPlugin_Tests/Pods-SDWebImageYYPlugin_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* SDWebImageYYPlugin_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDWebImageYYPlugin_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -58,7 +72,6 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		81EE1C5A2EC4BF351E15068D /* Pods-SDWebImageYYPlugin_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageYYPlugin_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageYYPlugin_Example/Pods-SDWebImageYYPlugin_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -95,6 +108,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		325E2824213CFB2300044370 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				325E2825213CFB2300044370 /* TestImage.gif */,
+				325E2829213D01AD00044370 /* TestImageAnimated.apng */,
+				325E282B213D01AD00044370 /* TestImageAnimated.webp */,
+				325E282A213D01AD00044370 /* TestImageStatic.webp */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
@@ -159,7 +183,11 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6003F5BB195388D20070C39A /* Tests.m */,
+				325E2824213CFB2300044370 /* Images */,
+				325E281A213CF8CB00044370 /* SDTestCase.h */,
+				325E281B213CF8CB00044370 /* SDTestCase.m */,
+				325E281D213CF94900044370 /* SDYYImageTests.m */,
+				325E2822213CFA2A00044370 /* SDYYCacheTests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -208,6 +236,7 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				A1C9798AC9A64B3285935ADE /* [CP] Embed Pods Frameworks */,
+				0731EE8A10D058D3EFB2B75A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -226,6 +255,8 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
+				79112E8232AA29A2C856E6D2 /* [CP] Embed Pods Frameworks */,
+				A1F76FB8CC168A22F62A2894 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -287,27 +318,42 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				325E282E213D01AD00044370 /* TestImageAnimated.webp in Resources */,
+				325E2826213CFB2300044370 /* TestImage.gif in Resources */,
+				325E282C213D01AD00044370 /* TestImageAnimated.apng in Resources */,
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
+				325E282D213D01AD00044370 /* TestImageStatic.webp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0C5606D06E2CBD1FF0BCA1FB /* [CP] Check Pods Manifest.lock */ = {
+		0731EE8A10D058D3EFB2B75A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImageYYPlugin_Example/Pods-SDWebImageYYPlugin_Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0C5606D06E2CBD1FF0BCA1FB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-SDWebImageYYPlugin_Tests-checkManifestLockResult.txt",
 			);
@@ -316,20 +362,34 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9AC01101C9614FE1E4B6AD75 /* [CP] Check Pods Manifest.lock */ = {
+		79112E8232AA29A2C856E6D2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImageYYPlugin_Tests/Pods-SDWebImageYYPlugin_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Expecta/Expecta.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Expecta.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImageYYPlugin_Tests/Pods-SDWebImageYYPlugin_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9AC01101C9614FE1E4B6AD75 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-SDWebImageYYPlugin_Example-checkManifestLockResult.txt",
 			);
@@ -343,8 +403,6 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImageYYPlugin_Example/Pods-SDWebImageYYPlugin_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -353,8 +411,6 @@
 				"${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImageYYPlugin.framework",
@@ -364,6 +420,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImageYYPlugin_Example/Pods-SDWebImageYYPlugin_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1F76FB8CC168A22F62A2894 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImageYYPlugin_Tests/Pods-SDWebImageYYPlugin_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -383,7 +454,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F5BC195388D20070C39A /* Tests.m in Sources */,
+				325E281F213CF94900044370 /* SDYYImageTests.m in Sources */,
+				325E2823213CFA2A00044370 /* SDYYCacheTests.m in Sources */,
+				325E281C213CF8CB00044370 /* SDTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,33 +1,33 @@
 PODS:
+  - Expecta (1.0.6)
   - SDWebImage/Core (5.0.0-beta3)
-  - SDWebImageYYPlugin (0.1.0):
+  - SDWebImageYYPlugin (0.1.1):
     - SDWebImage/Core (>= 5.0.0-beta)
-    - SDWebImageYYPlugin/YYCache (= 0.1.0)
-    - SDWebImageYYPlugin/YYImage (= 0.1.0)
-  - SDWebImageYYPlugin/YYCache (0.1.0):
+    - SDWebImageYYPlugin/YYCache (= 0.1.1)
+    - SDWebImageYYPlugin/YYImage (= 0.1.1)
+  - SDWebImageYYPlugin/YYCache (0.1.1):
     - SDWebImage/Core (>= 5.0.0-beta)
     - YYCache
-  - SDWebImageYYPlugin/YYImage (0.1.0):
+  - SDWebImageYYPlugin/YYImage (0.1.1):
     - SDWebImage/Core (>= 5.0.0-beta)
     - YYImage/Core
   - YYCache (1.0.4)
   - YYImage/Core (1.0.4)
+  - YYImage/WebP (1.0.4):
+    - YYImage/Core
 
 DEPENDENCIES:
+  - Expecta
   - SDWebImage/Core (from `https://github.com/rs/SDWebImage.git`, branch `5.x`)
   - SDWebImageYYPlugin (from `../`)
-
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - YYCache
-    - YYImage
+  - YYImage/WebP
 
 EXTERNAL SOURCES:
   SDWebImage:
     :branch: 5.x
     :git: https://github.com/rs/SDWebImage.git
   SDWebImageYYPlugin:
-    :path: "../"
+    :path: ../
 
 CHECKOUT OPTIONS:
   SDWebImage:
@@ -35,11 +35,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/rs/SDWebImage.git
 
 SPEC CHECKSUMS:
+  Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
   SDWebImage: e52654ceef9fdc19f4c612d64a5b6d3f05dd81a4
-  SDWebImageYYPlugin: 4a756eec055647c989fe9d54f9535780bc0e0465
+  SDWebImageYYPlugin: cfaeb2f2834c161d9aa9949d3d7c44aa7c80463c
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
 
-PODFILE CHECKSUM: 48b9bc55ce06154a2d7c5b440dd3d07115716ce3
+PODFILE CHECKSUM: 5900612c85a696261bc740246922b2914976662c
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.4.0

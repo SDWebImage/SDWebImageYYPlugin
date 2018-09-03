@@ -24,6 +24,24 @@ static inline YYImageType YYImageTypeFromSDImageFormat(SDImageFormat format) {
     }
 }
 
+static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
+    switch (type) {
+        case YYImageTypeJPEG:
+        case YYImageTypeJPEG2000:
+            return SDImageFormatJPEG;
+        case YYImageTypePNG:
+            return SDImageFormatPNG;
+        case YYImageTypeGIF:
+            return SDImageFormatGIF;
+        case YYImageTypeTIFF:
+            return SDImageFormatTIFF;
+        case YYImageTypeWebP:
+            return SDImageFormatWebP;
+        default:
+            return SDImageFormatUndefined;
+    }
+}
+
 @interface SDImageYYCoder ()
 
 @property (nonatomic, strong) YYImageDecoder *decoder;
@@ -70,10 +88,31 @@ static inline YYImageType YYImageTypeFromSDImageFormat(SDImageFormat format) {
         }
     }
     
-    YYImageDecoder *decoder = [YYImageDecoder decoderWithData:data scale:scale];
-    YYImageFrame *frame = [decoder frameAtIndex:0 decodeForDisplay:NO];
+    UIImage *image;
     
-    return frame.image;
+    YYImageDecoder *decoder = [YYImageDecoder decoderWithData:data scale:scale];
+    NSUInteger frameCount = decoder.frameCount;
+    if (frameCount <= 1) {
+        // Static Image
+        image = [decoder frameAtIndex:0 decodeForDisplay:NO].image;
+    } else {
+        // Animated Image
+        NSMutableArray<SDImageFrame *> *frames = [NSMutableArray array];
+        
+        for (size_t i = 0; i < frameCount; i++) {
+            YYImageFrame *imageFrame = [decoder frameAtIndex:i decodeForDisplay:NO];
+            SDImageFrame *frame = [SDImageFrame frameWithImage:imageFrame.image duration:imageFrame.duration];
+            [frames addObject:frame];
+        }
+        NSUInteger loopCount = decoder.loopCount;
+        
+        image = [SDImageCoderHelper animatedImageWithFrames:frames];
+        image.sd_imageLoopCount = loopCount;
+    }
+    YYImageType type = decoder.type;
+    image.sd_imageFormat = SDImageFormatFromYYImageType(type);
+    
+    return image;
 }
 
 - (BOOL)canEncodeToFormat:(SDImageFormat)format {
@@ -87,10 +126,32 @@ static inline YYImageType YYImageTypeFromSDImageFormat(SDImageFormat format) {
         compressionQuality = [options[SDImageCoderEncodeCompressionQuality] doubleValue];
     }
     
-    YYImageType type = YYImageTypeFromSDImageFormat(format);
-    NSData *data = [YYImageEncoder encodeImage:image type:type quality:compressionQuality];
+    NSData *imageData;
     
-    return data;
+    YYImageType type = YYImageTypeFromSDImageFormat(format);
+    BOOL encodeFirstFrame = [options[SDImageCoderEncodeFirstFrameOnly] boolValue];
+    
+    NSArray<SDImageFrame *> *frames = [SDImageCoderHelper framesFromAnimatedImage:image];
+    if (encodeFirstFrame || frames.count == 0) {
+        // Static Image
+        imageData = [YYImageEncoder encodeImage:image type:type quality:compressionQuality];
+    } else {
+        // Animated Image
+        YYImageEncoder *encoder = [[YYImageEncoder alloc] initWithType:type];
+        encoder.quality = compressionQuality;
+        encoder.loopCount = image.sd_imageLoopCount;
+        if (!encoder) {
+            return nil;
+        }
+        for (SDImageFrame *frame in frames) {
+            [encoder addImage:frame.image duration:frame.duration];
+        }
+        
+        imageData = [encoder encode];
+    }
+    
+    
+    return imageData;
 }
 
 #pragma mark - SDProgressiveImageCoder
