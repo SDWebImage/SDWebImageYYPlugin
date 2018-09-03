@@ -34,6 +34,22 @@ let imageView: YYAnimatedImageView
 imageView.sd_setImage(with: URL(string: "http://www.domain.com/path/to/image.gif"))
 ```
 
+For advanced user, you can embed `YYImageDecoder` && `YYImageEncoder` to SDWebImage by using the wrapper class `SDImageYYCoder`. See [Custom Coder](https://github.com/rs/SDWebImage/wiki/Advanced-Usage#custom-coder-420) wiki in SDWebImage.
+
++ Objective-C
+
+```objectivec
+// Register YYImage decoder/encoder as coder plugin
+[SDImageCodersManager.sharedManager addCoder:SDImageYYCoder.sharedCoder];
+```
+
++ Swift
+
+```swift
+// Register YYImage decoder/encoder as coder plugin
+SDImageCodersManager.shared.addCoder(SDImageYYCoder.shared)
+```
+
 #### YYCache Plugin
 To enable `YYCache` instead of `SDImageCache`, you can bind the cache for shared manager, or create a custom manager instead.
 

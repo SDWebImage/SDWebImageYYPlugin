@@ -92,7 +92,9 @@ static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
     
     YYImageDecoder *decoder = [YYImageDecoder decoderWithData:data scale:scale];
     NSUInteger frameCount = decoder.frameCount;
-    if (frameCount <= 1) {
+    BOOL decodeFirstFrame = [options[SDImageCoderDecodeFirstFrameOnly] boolValue];
+    
+    if (decodeFirstFrame || frameCount <= 1) {
         // Static Image
         image = [decoder frameAtIndex:0 decodeForDisplay:NO].image;
     } else {
