@@ -1,7 +1,5 @@
 /*
- * This file is part of the SDWebImage package.
- * (c) Olivier Poitrey <rs@dailymotion.com>
- * (c) Matt Galloway
+ * This file is part of the SDWebImageYYPlugin package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -59,6 +57,22 @@
     expect(imageView.image).notTo.beNil();
     expect(imageView.currentFrame).notTo.beNil(); // current frame
     expect(imageView.isAnimating).to.beTruthy(); // animating
+}
+
+- (void)testSDImageYYCoderPNGWorks {
+    NSURL *staticWebPURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"TestImage" withExtension:@"png"];
+    [self verifyCoder:[SDImageYYCoder sharedCoder]
+    withLocalImageURL:staticWebPURL
+     supportsEncoding:YES
+      isAnimatedImage:NO];
+}
+
+- (void)testSDImageYYCoderJPEGWorks {
+    NSURL *staticWebPURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"TestImage" withExtension:@"jpg"];
+    [self verifyCoder:[SDImageYYCoder sharedCoder]
+    withLocalImageURL:staticWebPURL
+     supportsEncoding:YES
+      isAnimatedImage:NO];
 }
 
 - (void)testSDImageYYCoderStaticWebPCoderWorks {
