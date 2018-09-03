@@ -5,9 +5,9 @@
  * file that was distributed with this source code.
  */
 
-#import <YYImage/YYImage.h>
 #import <SDWebImage/SDWebImage.h>
+#import <YYImage/YYAnimatedImageView.h>
 
-@interface YYImage (SDAddtions) <SDAnimatedImage>
+@interface SDAnimatedImage (YYAdditions) <YYAnimatedImage>
 
 @end

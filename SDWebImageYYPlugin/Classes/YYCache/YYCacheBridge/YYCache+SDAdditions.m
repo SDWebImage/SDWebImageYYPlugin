@@ -6,9 +6,9 @@
  */
 
 
-#import "YYCache+SDAddtions.h"
-#import "YYMemoryCache+SDAddtions.h"
-#import "YYDiskCache+SDAddtions.h"
+#import "YYCache+SDAdditions.h"
+#import "YYMemoryCache+SDAdditions.h"
+#import "YYDiskCache+SDAdditions.h"
 
 static NSData * SDYYPluginCacheDataWithImageData(UIImage *image, NSData *imageData) {
     NSData *data = imageData;
@@ -26,7 +26,7 @@ static NSData * SDYYPluginCacheDataWithImageData(UIImage *image, NSData *imageDa
     return data;
 }
 
-@implementation YYCache (SDAddtions)
+@implementation YYCache (SDAdditions)
 
 - (id<SDWebImageOperation>)queryImageForKey:(NSString *)key options:(SDWebImageOptions)options context:(SDWebImageContext *)context completion:(SDImageCacheQueryCompletionBlock)doneBlock {
     if (!key) {

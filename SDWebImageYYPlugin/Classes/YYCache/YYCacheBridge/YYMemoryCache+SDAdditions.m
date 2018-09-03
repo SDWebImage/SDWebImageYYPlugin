@@ -5,7 +5,7 @@
  * file that was distributed with this source code.
  */
 
-#import "YYMemoryCache+SDAddtions.h"
+#import "YYMemoryCache+SDAdditions.h"
 #import <objc/runtime.h>
 
 @interface YYMemoryCache ()
@@ -14,7 +14,7 @@
 
 @end
 
-@implementation YYMemoryCache (SDAddtions)
+@implementation YYMemoryCache (SDAdditions)
 
 - (SDImageCacheConfig *)sd_config {
     return objc_getAssociatedObject(self, @selector(sd_config));

@@ -5,9 +5,12 @@
  * file that was distributed with this source code.
  */
 
-#import <YYCache/YYDiskCache.h>
+
+#import <YYCache/YYCache.h>
 #import <SDWebImage/SDWebImage.h>
 
-@interface YYDiskCache (SDAddtions) <SDDiskCache>
+// YYCache category to support `SDImageCache` protocol. This allow user who prefer YYCache to be used as SDWebImage's custom image cache
+
+@interface YYCache (SDAdditions) <SDImageCache>
 
 @end

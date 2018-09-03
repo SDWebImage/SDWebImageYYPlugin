@@ -5,9 +5,9 @@
  * file that was distributed with this source code.
  */
 
-#import <YYCache/YYMemoryCache.h>
+#import <YYCache/YYDiskCache.h>
 #import <SDWebImage/SDWebImage.h>
 
-@interface YYMemoryCache (SDAddtions) <SDMemoryCache>
+@interface YYDiskCache (SDAdditions) <SDDiskCache>
 
 @end

@@ -11,17 +11,17 @@
 #endif
 
 // YYCache
-#if __has_include(<SDWebImageYYPlugin/YYCache+SDAddtions.h>)
-#import <SDWebImageYYPlugin/YYCache+SDAddtions.h>
-#import <SDWebImageYYPlugin/YYMemoryCache+SDAddtions.h>
-#import <SDWebImageYYPlugin/YYDiskCache+SDAddtions.h>
+#if __has_include(<SDWebImageYYPlugin/YYCache+SDAdditions.h>)
+#import <SDWebImageYYPlugin/YYCache+SDAdditions.h>
+#import <SDWebImageYYPlugin/YYMemoryCache+SDAdditions.h>
+#import <SDWebImageYYPlugin/YYDiskCache+SDAdditions.h>
 #endif
 
 // YYImage
-#if __has_include(<SDWebImageYYPlugin/YYImage+SDAddtions.h>)
-#import <SDWebImageYYPlugin/SDAnimatedImage+YYAddtions.h>
+#if __has_include(<SDWebImageYYPlugin/YYImage+SDAdditions.h>)
+#import <SDWebImageYYPlugin/SDAnimatedImage+YYAdditions.h>
 #import <SDWebImageYYPlugin/YYAnimatedImageView+WebCache.h>
-#import <SDWebImageYYPlugin/YYImage+SDAddtions.h>
+#import <SDWebImageYYPlugin/YYImage+SDAdditions.h>
 #import <SDWebImageYYPlugin/SDImageYYCoder.h>
 #endif
 

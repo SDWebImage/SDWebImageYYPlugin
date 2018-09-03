@@ -6,7 +6,7 @@
  */
 
 #import "YYAnimatedImageView+WebCache.h"
-#import "YYImage+SDAddtions.h"
+#import "YYImage+SDAdditions.h"
 
 @implementation YYAnimatedImageView (WebCache)
 

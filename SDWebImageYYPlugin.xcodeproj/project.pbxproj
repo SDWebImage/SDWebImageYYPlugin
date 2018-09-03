@@ -7,44 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		324E152C213D133300127388 /* YYImage+SDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 324E151B213D133300127388 /* YYImage+SDAdditions.m */; };
+		324E152D213D133300127388 /* YYAnimatedImageView+WebCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 324E151C213D133300127388 /* YYAnimatedImageView+WebCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324E152E213D133300127388 /* SDImageYYCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 324E151D213D133300127388 /* SDImageYYCoder.m */; };
+		324E152F213D133300127388 /* YYAnimatedImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 324E151E213D133300127388 /* YYAnimatedImageView+WebCache.m */; };
+		324E1530213D133300127388 /* YYImage+SDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 324E151F213D133300127388 /* YYImage+SDAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324E1531213D133300127388 /* SDImageYYCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 324E1520213D133300127388 /* SDImageYYCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324E1532213D133300127388 /* SDAnimatedImage+YYAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 324E1522213D133300127388 /* SDAnimatedImage+YYAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324E1533213D133300127388 /* SDAnimatedImage+YYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 324E1523213D133300127388 /* SDAnimatedImage+YYAdditions.m */; };
+		324E1534213D133300127388 /* YYDiskCache+SDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 324E1526213D133300127388 /* YYDiskCache+SDAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324E1535213D133300127388 /* YYCache+SDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 324E1527213D133300127388 /* YYCache+SDAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324E1536213D133300127388 /* YYMemoryCache+SDAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 324E1528213D133300127388 /* YYMemoryCache+SDAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324E1537213D133300127388 /* YYDiskCache+SDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 324E1529213D133300127388 /* YYDiskCache+SDAdditions.m */; };
+		324E1538213D133300127388 /* YYCache+SDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 324E152A213D133300127388 /* YYCache+SDAdditions.m */; };
+		324E1539213D133300127388 /* YYMemoryCache+SDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 324E152B213D133300127388 /* YYMemoryCache+SDAdditions.m */; };
 		325E27E8213BEDE900044370 /* SDWebImageYYPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 325E27E7213BEDE900044370 /* SDWebImageYYPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		325E27FC213CE96800044370 /* YYAnimatedImageView+WebCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 325E27EB213CE96800044370 /* YYAnimatedImageView+WebCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		325E27FD213CE96800044370 /* YYImage+SDAddtions.m in Sources */ = {isa = PBXBuildFile; fileRef = 325E27EC213CE96800044370 /* YYImage+SDAddtions.m */; };
-		325E27FE213CE96800044370 /* SDImageYYCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 325E27ED213CE96800044370 /* SDImageYYCoder.m */; };
-		325E27FF213CE96800044370 /* YYAnimatedImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 325E27EE213CE96800044370 /* YYAnimatedImageView+WebCache.m */; };
-		325E2800213CE96800044370 /* YYImage+SDAddtions.h in Headers */ = {isa = PBXBuildFile; fileRef = 325E27EF213CE96800044370 /* YYImage+SDAddtions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		325E2801213CE96800044370 /* SDImageYYCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 325E27F0213CE96800044370 /* SDImageYYCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		325E2802213CE96800044370 /* SDAnimatedImage+YYAddtions.h in Headers */ = {isa = PBXBuildFile; fileRef = 325E27F2213CE96800044370 /* SDAnimatedImage+YYAddtions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		325E2803213CE96800044370 /* SDAnimatedImage+YYAddtions.m in Sources */ = {isa = PBXBuildFile; fileRef = 325E27F3213CE96800044370 /* SDAnimatedImage+YYAddtions.m */; };
-		325E2804213CE96800044370 /* YYMemoryCache+SDAddtions.m in Sources */ = {isa = PBXBuildFile; fileRef = 325E27F6213CE96800044370 /* YYMemoryCache+SDAddtions.m */; };
-		325E2805213CE96800044370 /* YYCache+SDAddtions.m in Sources */ = {isa = PBXBuildFile; fileRef = 325E27F7213CE96800044370 /* YYCache+SDAddtions.m */; };
-		325E2806213CE96800044370 /* YYDiskCache+SDAddtions.h in Headers */ = {isa = PBXBuildFile; fileRef = 325E27F8213CE96800044370 /* YYDiskCache+SDAddtions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		325E2807213CE96800044370 /* YYDiskCache+SDAddtions.m in Sources */ = {isa = PBXBuildFile; fileRef = 325E27F9213CE96800044370 /* YYDiskCache+SDAddtions.m */; };
-		325E2808213CE96800044370 /* YYCache+SDAddtions.h in Headers */ = {isa = PBXBuildFile; fileRef = 325E27FA213CE96800044370 /* YYCache+SDAddtions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		325E2809213CE96800044370 /* YYMemoryCache+SDAddtions.h in Headers */ = {isa = PBXBuildFile; fileRef = 325E27FB213CE96800044370 /* YYMemoryCache+SDAddtions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		325E280C213CEBA500044370 /* YYCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325E280B213CEBA500044370 /* YYCache.framework */; };
 		325E280E213CEBAF00044370 /* YYImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325E280D213CEBAF00044370 /* YYImage.framework */; };
 		325E2810213CED0400044370 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325E280F213CED0400044370 /* SDWebImage.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		324E151B213D133300127388 /* YYImage+SDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYImage+SDAdditions.m"; sourceTree = "<group>"; };
+		324E151C213D133300127388 /* YYAnimatedImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYAnimatedImageView+WebCache.h"; sourceTree = "<group>"; };
+		324E151D213D133300127388 /* SDImageYYCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageYYCoder.m; sourceTree = "<group>"; };
+		324E151E213D133300127388 /* YYAnimatedImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYAnimatedImageView+WebCache.m"; sourceTree = "<group>"; };
+		324E151F213D133300127388 /* YYImage+SDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYImage+SDAdditions.h"; sourceTree = "<group>"; };
+		324E1520213D133300127388 /* SDImageYYCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageYYCoder.h; sourceTree = "<group>"; };
+		324E1522213D133300127388 /* SDAnimatedImage+YYAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDAnimatedImage+YYAdditions.h"; sourceTree = "<group>"; };
+		324E1523213D133300127388 /* SDAnimatedImage+YYAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDAnimatedImage+YYAdditions.m"; sourceTree = "<group>"; };
+		324E1526213D133300127388 /* YYDiskCache+SDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYDiskCache+SDAdditions.h"; sourceTree = "<group>"; };
+		324E1527213D133300127388 /* YYCache+SDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYCache+SDAdditions.h"; sourceTree = "<group>"; };
+		324E1528213D133300127388 /* YYMemoryCache+SDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYMemoryCache+SDAdditions.h"; sourceTree = "<group>"; };
+		324E1529213D133300127388 /* YYDiskCache+SDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYDiskCache+SDAdditions.m"; sourceTree = "<group>"; };
+		324E152A213D133300127388 /* YYCache+SDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYCache+SDAdditions.m"; sourceTree = "<group>"; };
+		324E152B213D133300127388 /* YYMemoryCache+SDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYMemoryCache+SDAdditions.m"; sourceTree = "<group>"; };
 		325E27DA213BED3800044370 /* SDWebImageYYPlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImageYYPlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		325E27E5213BEDE400044370 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Module/Info.plist; sourceTree = "<group>"; };
 		325E27E7213BEDE900044370 /* SDWebImageYYPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDWebImageYYPlugin.h; path = Module/SDWebImageYYPlugin.h; sourceTree = "<group>"; };
-		325E27EB213CE96800044370 /* YYAnimatedImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYAnimatedImageView+WebCache.h"; sourceTree = "<group>"; };
-		325E27EC213CE96800044370 /* YYImage+SDAddtions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYImage+SDAddtions.m"; sourceTree = "<group>"; };
-		325E27ED213CE96800044370 /* SDImageYYCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageYYCoder.m; sourceTree = "<group>"; };
-		325E27EE213CE96800044370 /* YYAnimatedImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYAnimatedImageView+WebCache.m"; sourceTree = "<group>"; };
-		325E27EF213CE96800044370 /* YYImage+SDAddtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYImage+SDAddtions.h"; sourceTree = "<group>"; };
-		325E27F0213CE96800044370 /* SDImageYYCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageYYCoder.h; sourceTree = "<group>"; };
-		325E27F2213CE96800044370 /* SDAnimatedImage+YYAddtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDAnimatedImage+YYAddtions.h"; sourceTree = "<group>"; };
-		325E27F3213CE96800044370 /* SDAnimatedImage+YYAddtions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDAnimatedImage+YYAddtions.m"; sourceTree = "<group>"; };
-		325E27F6213CE96800044370 /* YYMemoryCache+SDAddtions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYMemoryCache+SDAddtions.m"; sourceTree = "<group>"; };
-		325E27F7213CE96800044370 /* YYCache+SDAddtions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYCache+SDAddtions.m"; sourceTree = "<group>"; };
-		325E27F8213CE96800044370 /* YYDiskCache+SDAddtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYDiskCache+SDAddtions.h"; sourceTree = "<group>"; };
-		325E27F9213CE96800044370 /* YYDiskCache+SDAddtions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYDiskCache+SDAddtions.m"; sourceTree = "<group>"; };
-		325E27FA213CE96800044370 /* YYCache+SDAddtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYCache+SDAddtions.h"; sourceTree = "<group>"; };
-		325E27FB213CE96800044370 /* YYMemoryCache+SDAddtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYMemoryCache+SDAddtions.h"; sourceTree = "<group>"; };
 		325E280B213CEBA500044370 /* YYCache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YYCache.framework; path = Carthage/Build/iOS/YYCache.framework; sourceTree = "<group>"; };
 		325E280D213CEBAF00044370 /* YYImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YYImage.framework; path = Carthage/Build/iOS/YYImage.framework; sourceTree = "<group>"; };
 		325E280F213CED0400044370 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
@@ -64,6 +64,60 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		324E1519213D133300127388 /* YYImage */ = {
+			isa = PBXGroup;
+			children = (
+				324E151A213D133300127388 /* YYImageBridge */,
+				324E1521213D133300127388 /* SDWebImageBridge */,
+			);
+			name = YYImage;
+			path = Classes/YYImage;
+			sourceTree = "<group>";
+		};
+		324E151A213D133300127388 /* YYImageBridge */ = {
+			isa = PBXGroup;
+			children = (
+				324E1520213D133300127388 /* SDImageYYCoder.h */,
+				324E151D213D133300127388 /* SDImageYYCoder.m */,
+				324E151C213D133300127388 /* YYAnimatedImageView+WebCache.h */,
+				324E151E213D133300127388 /* YYAnimatedImageView+WebCache.m */,
+				324E151F213D133300127388 /* YYImage+SDAdditions.h */,
+				324E151B213D133300127388 /* YYImage+SDAdditions.m */,
+			);
+			path = YYImageBridge;
+			sourceTree = "<group>";
+		};
+		324E1521213D133300127388 /* SDWebImageBridge */ = {
+			isa = PBXGroup;
+			children = (
+				324E1522213D133300127388 /* SDAnimatedImage+YYAdditions.h */,
+				324E1523213D133300127388 /* SDAnimatedImage+YYAdditions.m */,
+			);
+			path = SDWebImageBridge;
+			sourceTree = "<group>";
+		};
+		324E1524213D133300127388 /* YYCache */ = {
+			isa = PBXGroup;
+			children = (
+				324E1525213D133300127388 /* YYCacheBridge */,
+			);
+			name = YYCache;
+			path = Classes/YYCache;
+			sourceTree = "<group>";
+		};
+		324E1525213D133300127388 /* YYCacheBridge */ = {
+			isa = PBXGroup;
+			children = (
+				324E1527213D133300127388 /* YYCache+SDAdditions.h */,
+				324E152A213D133300127388 /* YYCache+SDAdditions.m */,
+				324E1526213D133300127388 /* YYDiskCache+SDAdditions.h */,
+				324E1529213D133300127388 /* YYDiskCache+SDAdditions.m */,
+				324E1528213D133300127388 /* YYMemoryCache+SDAdditions.h */,
+				324E152B213D133300127388 /* YYMemoryCache+SDAdditions.m */,
+			);
+			path = YYCacheBridge;
+			sourceTree = "<group>";
+		};
 		325E27D0213BED3800044370 = {
 			isa = PBXGroup;
 			children = (
@@ -84,66 +138,12 @@
 		325E27DC213BED3800044370 /* SDWebImageYYPlugin */ = {
 			isa = PBXGroup;
 			children = (
-				325E27F4213CE96800044370 /* YYCache */,
-				325E27E9213CE96800044370 /* YYImage */,
+				324E1524213D133300127388 /* YYCache */,
+				324E1519213D133300127388 /* YYImage */,
 				325E27E7213BEDE900044370 /* SDWebImageYYPlugin.h */,
 				325E27E5213BEDE400044370 /* Info.plist */,
 			);
 			path = SDWebImageYYPlugin;
-			sourceTree = "<group>";
-		};
-		325E27E9213CE96800044370 /* YYImage */ = {
-			isa = PBXGroup;
-			children = (
-				325E27EA213CE96800044370 /* YYImageBridge */,
-				325E27F1213CE96800044370 /* SDWebImageBridge */,
-			);
-			name = YYImage;
-			path = Classes/YYImage;
-			sourceTree = "<group>";
-		};
-		325E27EA213CE96800044370 /* YYImageBridge */ = {
-			isa = PBXGroup;
-			children = (
-				325E27F0213CE96800044370 /* SDImageYYCoder.h */,
-				325E27ED213CE96800044370 /* SDImageYYCoder.m */,
-				325E27EB213CE96800044370 /* YYAnimatedImageView+WebCache.h */,
-				325E27EE213CE96800044370 /* YYAnimatedImageView+WebCache.m */,
-				325E27EF213CE96800044370 /* YYImage+SDAddtions.h */,
-				325E27EC213CE96800044370 /* YYImage+SDAddtions.m */,
-			);
-			path = YYImageBridge;
-			sourceTree = "<group>";
-		};
-		325E27F1213CE96800044370 /* SDWebImageBridge */ = {
-			isa = PBXGroup;
-			children = (
-				325E27F2213CE96800044370 /* SDAnimatedImage+YYAddtions.h */,
-				325E27F3213CE96800044370 /* SDAnimatedImage+YYAddtions.m */,
-			);
-			path = SDWebImageBridge;
-			sourceTree = "<group>";
-		};
-		325E27F4213CE96800044370 /* YYCache */ = {
-			isa = PBXGroup;
-			children = (
-				325E27F5213CE96800044370 /* YYCacheBridge */,
-			);
-			name = YYCache;
-			path = Classes/YYCache;
-			sourceTree = "<group>";
-		};
-		325E27F5213CE96800044370 /* YYCacheBridge */ = {
-			isa = PBXGroup;
-			children = (
-				325E27FA213CE96800044370 /* YYCache+SDAddtions.h */,
-				325E27F7213CE96800044370 /* YYCache+SDAddtions.m */,
-				325E27F8213CE96800044370 /* YYDiskCache+SDAddtions.h */,
-				325E27F9213CE96800044370 /* YYDiskCache+SDAddtions.m */,
-				325E27FB213CE96800044370 /* YYMemoryCache+SDAddtions.h */,
-				325E27F6213CE96800044370 /* YYMemoryCache+SDAddtions.m */,
-			);
-			path = YYCacheBridge;
 			sourceTree = "<group>";
 		};
 		325E280A213CEBA500044370 /* Frameworks */ = {
@@ -163,14 +163,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				325E2802213CE96800044370 /* SDAnimatedImage+YYAddtions.h in Headers */,
-				325E2808213CE96800044370 /* YYCache+SDAddtions.h in Headers */,
-				325E2806213CE96800044370 /* YYDiskCache+SDAddtions.h in Headers */,
-				325E2800213CE96800044370 /* YYImage+SDAddtions.h in Headers */,
-				325E27FC213CE96800044370 /* YYAnimatedImageView+WebCache.h in Headers */,
+				324E1532213D133300127388 /* SDAnimatedImage+YYAdditions.h in Headers */,
+				324E1536213D133300127388 /* YYMemoryCache+SDAdditions.h in Headers */,
+				324E152D213D133300127388 /* YYAnimatedImageView+WebCache.h in Headers */,
 				325E27E8213BEDE900044370 /* SDWebImageYYPlugin.h in Headers */,
-				325E2801213CE96800044370 /* SDImageYYCoder.h in Headers */,
-				325E2809213CE96800044370 /* YYMemoryCache+SDAddtions.h in Headers */,
+				324E1530213D133300127388 /* YYImage+SDAdditions.h in Headers */,
+				324E1531213D133300127388 /* SDImageYYCoder.h in Headers */,
+				324E1534213D133300127388 /* YYDiskCache+SDAdditions.h in Headers */,
+				324E1535213D133300127388 /* YYCache+SDAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,13 +241,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				325E2804213CE96800044370 /* YYMemoryCache+SDAddtions.m in Sources */,
-				325E27FF213CE96800044370 /* YYAnimatedImageView+WebCache.m in Sources */,
-				325E27FE213CE96800044370 /* SDImageYYCoder.m in Sources */,
-				325E27FD213CE96800044370 /* YYImage+SDAddtions.m in Sources */,
-				325E2803213CE96800044370 /* SDAnimatedImage+YYAddtions.m in Sources */,
-				325E2805213CE96800044370 /* YYCache+SDAddtions.m in Sources */,
-				325E2807213CE96800044370 /* YYDiskCache+SDAddtions.m in Sources */,
+				324E152F213D133300127388 /* YYAnimatedImageView+WebCache.m in Sources */,
+				324E1533213D133300127388 /* SDAnimatedImage+YYAdditions.m in Sources */,
+				324E152E213D133300127388 /* SDImageYYCoder.m in Sources */,
+				324E1539213D133300127388 /* YYMemoryCache+SDAdditions.m in Sources */,
+				324E1538213D133300127388 /* YYCache+SDAdditions.m in Sources */,
+				324E152C213D133300127388 /* YYImage+SDAdditions.m in Sources */,
+				324E1537213D133300127388 /* YYDiskCache+SDAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

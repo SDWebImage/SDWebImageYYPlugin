@@ -21,6 +21,8 @@
     }
 }
 
+#pragma mark - WebCache
+
 - (void)testYYAnimatedImageViewSetImageWithURL {
     XCTestExpectation *expectation = [self expectationWithDescription:@"YYAnimatedImageView setImageWithURL"];
     
@@ -39,6 +41,30 @@
     [self waitForExpectationsWithCommonTimeout];
 }
 
+#pragma mark - YYImage && SDAnimatedImage
+
+- (void)testYYImageWorksForSDAnimatedImageView {
+    SDAnimatedImageView *imageView = [SDAnimatedImageView new];
+    [self.window addSubview:imageView];
+    YYImage *image = [YYImage imageWithData:[self testGIFData]];
+    imageView.image = image;
+    expect(imageView.image).notTo.beNil();
+    expect(imageView.currentFrame).notTo.beNil(); // current frame
+    expect(imageView.isAnimating).to.beTruthy(); // animating
+}
+
+- (void)testYYImageInitWithSDImageYYCoder {
+    SDImageYYCoder *coder = [[SDImageYYCoder alloc] initWithAnimatedImageData:[self testGIFData] options:@{SDWebImageContextImageScaleFactor : @(2)}];
+    SDAnimatedImage *image = [[SDAnimatedImage alloc] initWithAnimatedCoder:coder scale:2];
+    YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc] init];
+    [self.window addSubview:imageView];
+    imageView.image = image;
+    expect(imageView.image).notTo.beNil();
+    expect(imageView.image.scale).to.equal(2);
+    expect(imageView.currentAnimatedImageIndex).to.equal(0); // current frame
+    expect(imageView.currentIsPlayingAnimation).to.beTruthy(); // animating
+}
+
 - (void)testSDAnimatedImageWorksForYYAnimatedImageView {
     YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc] init];
     [self.window addSubview:imageView];
@@ -49,14 +75,36 @@
     expect(imageView.currentIsPlayingAnimation).to.beTruthy(); // animating
 }
 
-- (void)testYYImageWorksForSDAnimatedImageView {
+- (void)testSDAnimatedImageInitWithSDImageYYCoder {
+    SDImageYYCoder *coder = [[SDImageYYCoder alloc] initWithAnimatedImageData:[self testGIFData] options:@{SDWebImageContextImageScaleFactor : @(2)}];
+    SDAnimatedImage *image = [[SDAnimatedImage alloc] initWithAnimatedCoder:coder scale:2];
     SDAnimatedImageView *imageView = [SDAnimatedImageView new];
     [self.window addSubview:imageView];
-    YYImage *image = [YYImage imageWithData:[self testGIFData]];
     imageView.image = image;
     expect(imageView.image).notTo.beNil();
+    expect(imageView.image.scale).to.equal(2);
     expect(imageView.currentFrame).notTo.beNil(); // current frame
     expect(imageView.isAnimating).to.beTruthy(); // animating
+}
+
+#pragma mark - SDImageYYCoder
+
+- (void)testSDImageYYCoderProgressiveJPEGWorks {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Progressive JPEG download"];
+    // Add coder
+    [SDImageCodersManager.sharedManager addCoder:SDImageYYCoder.sharedCoder];
+    
+    NSURL *imageURL = [NSURL URLWithString:kTestProgressiveJPEGURL];
+    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL options:SDWebImageDownloaderProgressiveLoad progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+        if (image && data && !error && finished) {
+            [expectation fulfill];
+        } else if (finished) {
+            XCTFail(@"Something went wrong");
+        } else {
+            // progressive updates
+        }
+    }];
+    [self waitForExpectationsWithCommonTimeout];
 }
 
 - (void)testSDImageYYCoderPNGWorks {

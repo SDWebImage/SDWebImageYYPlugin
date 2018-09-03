@@ -64,7 +64,8 @@ static NSString *kTestImageKeyPNG = @"TestImageKey.png";
 
 - (void)testYYCacheQueryOp {
     XCTestExpectation *expectation = [self expectationWithDescription:@"SDImageCache query op works"];
-    [SDYYCacheTests.sharedCache setObject:[self testJPEGImage] forKey:kTestImageKeyJPEG];
+    NSData *imageData = [NSData dataWithContentsOfFile:[self testJPEGPath]];
+    [SDYYCacheTests.sharedCache.diskCache setObject:imageData forKey:kTestImageKeyJPEG];
     [SDYYCacheTests.sharedCache queryImageForKey:kTestImageKeyJPEG options:0 context:nil completion:^(UIImage * _Nullable image, NSData * _Nullable data, SDImageCacheType cacheType) {
         expect(image).notTo.beNil();
         [expectation fulfill];

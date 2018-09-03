@@ -5,9 +5,9 @@
  * file that was distributed with this source code.
  */
 
-#import "YYImage+SDAddtions.h"
+#import "YYImage+SDAdditions.h"
 
-@implementation YYImage (SDAddtions)
+@implementation YYImage (SDAdditions)
 
 #pragma mark - SDAnimatedImage
 
