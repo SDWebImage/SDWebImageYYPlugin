@@ -6,6 +6,7 @@
  */
 
 #import "YYImage+SDAdditions.h"
+#import <objc/runtime.h>
 
 @implementation YYImage (SDAdditions)
 
@@ -22,10 +23,16 @@
 
 - (void)preloadAllFrames {
     [self setPreloadAllAnimatedImageFrames:YES];
+    // YYImage contains bug that don't update ivar value, simple workaround
+    Ivar ivar = class_getInstanceVariable(self.class, "_preloadAllAnimatedImageFrames");
+    ((void (*)(id, Ivar, BOOL))object_setIvar)(self, ivar, YES);
 }
 
 - (void)unloadAllFrames {
     [self setPreloadAllAnimatedImageFrames:NO];
+    // YYImage contains bug that don't update ivar value, simple workaround
+    Ivar ivar = class_getInstanceVariable(self.class, "_preloadAllAnimatedImageFrames");
+    ((void (*)(id, Ivar, BOOL))object_setIvar)(self, ivar, NO);
 }
 
 - (BOOL)isAllFramesLoaded {

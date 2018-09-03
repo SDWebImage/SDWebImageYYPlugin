@@ -35,7 +35,31 @@
                             expect(error).to.beNil();
                             expect(originalImageURL).to.equal(imageURL);
                             
-                            expect(imageView.image.class).to.equal(YYImage.class);
+                            expect(image.class).to.equal(YYImage.class);
+                            [expectation fulfill];
+                        }];
+    [self waitForExpectationsWithCommonTimeout];
+}
+
+- (void)testYYAnimatedImageViewSetImageWithURLPreloadAllFrames {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"YYAnimatedImageView setImageWithURL preloadAllFrames"];
+    
+    YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc] init];
+    NSURL *originalImageURL = [NSURL URLWithString:kTestAPNGPURL];
+    
+    [imageView sd_setImageWithURL:originalImageURL
+                 placeholderImage:nil
+                          options:SDWebImagePreloadAllFrames
+                        completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                            expect(image).toNot.beNil();
+                            expect(error).to.beNil();
+                            expect(originalImageURL).to.equal(imageURL);
+                            
+                            YYImage *animatedImage = (YYImage *)image;
+                            expect(animatedImage.class).to.equal(YYImage.class);
+                            expect(animatedImage.isAllFramesLoaded).beTruthy();
+                            [animatedImage unloadAllFrames];
+                            expect(animatedImage.isAllFramesLoaded).beFalsy();
                             [expectation fulfill];
                         }];
     [self waitForExpectationsWithCommonTimeout];
@@ -95,7 +119,7 @@
     [SDImageCodersManager.sharedManager addCoder:SDImageYYCoder.sharedCoder];
     
     NSURL *imageURL = [NSURL URLWithString:kTestProgressiveJPEGURL];
-    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL options:SDWebImageDownloaderProgressiveLoad progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL options:SDWebImageDownloaderProgressiveLoad context:@{SDWebImageContextAnimatedImageClass : YYImage.class} progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         if (image && data && !error && finished) {
             [expectation fulfill];
         } else if (finished) {
