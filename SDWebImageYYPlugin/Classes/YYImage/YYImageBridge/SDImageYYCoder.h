@@ -6,7 +6,7 @@
  */
 
 #import <YYImage/YYImage.h>
-#import <SDWebImage/SDImageCoder.h>
+#import <SDWebImage/SDWebImage.h>
 
 /**
  YYImageEncoder && YYImageDecoder bridge to supports SDWebImage coder protocol. This class use YYImage's decoding && encoding system. It supports any image format listed in `YYImageType`.

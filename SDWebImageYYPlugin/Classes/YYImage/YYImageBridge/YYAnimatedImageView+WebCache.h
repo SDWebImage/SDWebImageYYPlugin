@@ -6,7 +6,7 @@
  */
 
 #import <YYImage/YYAnimatedImageView.h>
-#import <SDWebImage/SDWebImageManager.h>
+#import <SDWebImage/SDWebImage.h>
 
 @interface YYAnimatedImageView (WebCache)
 

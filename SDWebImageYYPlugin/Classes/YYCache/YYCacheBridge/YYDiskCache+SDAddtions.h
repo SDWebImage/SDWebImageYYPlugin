@@ -6,7 +6,7 @@
  */
 
 #import <YYCache/YYDiskCache.h>
-#import <SDWebImage/SDDiskCache.h>
+#import <SDWebImage/SDWebImage.h>
 
 @interface YYDiskCache (SDAddtions) <SDDiskCache>
 

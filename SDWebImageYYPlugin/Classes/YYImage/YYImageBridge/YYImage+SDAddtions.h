@@ -6,7 +6,7 @@
  */
 
 #import <YYImage/YYImage.h>
-#import <SDWebImage/SDAnimatedImage.h>
+#import <SDWebImage/SDWebImage.h>
 
 @interface YYImage (SDAddtions) <SDAnimatedImage>
 

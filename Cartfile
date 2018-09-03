@@ -1,2 +1,3 @@
+github "rs/SDWebImage" >= 5.0.0-beta3
 github "ibireme/YYCache" ~> 1.0
 github "ibireme/YYImage" ~> 1.0
