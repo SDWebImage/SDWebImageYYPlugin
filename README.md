@@ -4,6 +4,8 @@
 [![Version](https://img.shields.io/cocoapods/v/SDWebImageYYPlugin.svg?style=flat)](https://cocoapods.org/pods/SDWebImageYYPlugin)
 [![License](https://img.shields.io/cocoapods/l/SDWebImageYYPlugin.svg?style=flat)](https://cocoapods.org/pods/SDWebImageYYPlugin)
 [![Platform](https://img.shields.io/cocoapods/p/SDWebImageYYPlugin.svg?style=flat)](https://cocoapods.org/pods/SDWebImageYYPlugin)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/SDWebImage/SDWebImageYYPlugin)
+[![codecov](https://codecov.io/gh/SDWebImage/SDWebImageYYPlugin/branch/master/graph/badge.svg)](https://codecov.io/gh/SDWebImage/SDWebImageYYPlugin)
 
 
 ## What's for
@@ -14,6 +16,8 @@ By using SDWebImageYYPlugin, you can use all you familiar SDWebImage's loading m
 And you can also use `YYCache` instead of `SDImageCache` for image cache system, which may better memory cache performance (By taking advanced of LRU algorithm), and disk cache performance (By taking advanced of sqlite blob storage)
 
 ## Usage
+
+#### YYImage Plugin
 To load a network image, simply call the View Category method like UIImageView.
 
 + Objective-C
@@ -30,21 +34,41 @@ let imageView: YYAnimatedImageView
 imageView.sd_setImage(with: URL(string: "http://www.domain.com/path/to/image.gif"))
 ```
 
+#### YYCache Plugin
 To enable `YYCache` instead of `SDImageCache`, you can bind the cache for shared manager, or create a custom manager instead.
+
++ Objective-C
+
+```objectivec
+// Use `YYCache` for shared manager
+SDWebImageManger.defaultImageCache = [YYCache cacheWithName:@"default"];
+```
+
++ Swift
+
+```swift
+// Use `YYCache` for shared manager
+SDWebImageManger.defaultImageCache = YYCache(name: "name")
+```
 
 You can also use `YYMemoryCache` or `YYDiskcache` to customize memory cache / disk cache only. See [Custom Cache](https://github.com/rs/SDWebImage/wiki/Advanced-Usage#custom-cache-50) wiki in SDWebImage.
 
 + Objective-C
 
 ```objectivec
-// Assign to shared manager
-SDWebImageManger.defaultCache = [YYCache sharedCache];
+// Use `YYMemoryCache` for shared `SDImageCache` memory cache implementation
+SDImageCacheConfig.defaultCacheConfig.memoryCacheClass = YYMemoryCache.class;
+// Use `YYDiskCache` for shared `SDImageCache` disk cache implementation
+SDImageCacheConfig.defaultCacheConfig.diskCacheClass = YYDiskCache.class;
 ```
 
 + Swift
 
 ```swift
-SDWebImageManger.defaultCache = YYCache.shared
+// Use `YYMemoryCache` for `SDImageCache` memory cache implementation
+SDImageCacheConfig.default.memoryCacheClass = YYMemoryCache.self
+// Use `YYDiskCache` for `SDImageCache` disk cache implementation
+SDImageCacheConfig.default.diskCacheClass = YYDiskCache.self
 ```
 
 ## Requirements
@@ -53,6 +77,8 @@ SDWebImageManger.defaultCache = YYCache.shared
 + Xcode 9+
 
 ## Installation
+
+#### CocoaPods
 
 SDWebImageYYPlugin is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -67,6 +93,18 @@ SDWebImageYYPlugin contains two subspecs, `YYCache` and `YYImage`. You can choos
 pod 'SDWebImageYYPlugin/YYImage'
 pod 'SDWebImageYYPlugin/YYCache'
 ```
+
+#### Carthage
+
+SDWebImageFLPlugin is available through [Carthage](https://github.com/Carthage/Carthage).
+
+```
+github "SDWebImage/SDWebImageYYPlugin"
+```
+
+Carthage does not support like CocoaPods' subspec, the built framework will contains both YYCache && YYImage support.
+
+Note because of limit of [YYImage Carthage support](https://github.com/ibireme/YYImage#carthage), YYImage plugin with Carthage will not support WebP format. If you want to support WebP format, use CocoaPods instead.
 
 ## Author
 
