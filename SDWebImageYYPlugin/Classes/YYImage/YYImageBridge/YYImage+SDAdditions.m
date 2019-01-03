@@ -40,3 +40,28 @@
 }
 
 @end
+
+@implementation YYImage (MemoryCacheCost)
+
+- (NSUInteger)sd_memoryCost {
+    NSNumber *value = objc_getAssociatedObject(self, @selector(sd_memoryCost));
+    if (value != nil) {
+        return value.unsignedIntegerValue;
+    }
+    
+    CGImageRef imageRef = self.CGImage;
+    if (!imageRef) {
+        return 0;
+    }
+    NSUInteger bytesPerFrame = CGImageGetBytesPerRow(imageRef) * CGImageGetHeight(imageRef);
+    NSUInteger frameCount = 1;
+    if (self.isAllFramesLoaded) {
+        frameCount = self.animatedImageFrameCount;
+    }
+    frameCount = frameCount > 0 ? frameCount : 1;
+    NSUInteger cost = bytesPerFrame * frameCount;
+    return cost;
+}
+
+@end
+
