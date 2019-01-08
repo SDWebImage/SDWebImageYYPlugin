@@ -242,7 +242,6 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				A1C9798AC9A64B3285935ADE /* [CP] Embed Pods Frameworks */,
-				0731EE8A10D058D3EFB2B75A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -262,7 +261,6 @@
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
 				79112E8232AA29A2C856E6D2 /* [CP] Embed Pods Frameworks */,
-				A1F76FB8CC168A22F62A2894 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -337,21 +335,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0731EE8A10D058D3EFB2B75A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImageYYPlugin_Example/Pods-SDWebImageYYPlugin_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		0C5606D06E2CBD1FF0BCA1FB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -428,21 +411,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImageYYPlugin_Example/Pods-SDWebImageYYPlugin_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A1F76FB8CC168A22F62A2894 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImageYYPlugin_Tests/Pods-SDWebImageYYPlugin_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
