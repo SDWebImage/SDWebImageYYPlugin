@@ -77,7 +77,7 @@ static NSData * SDYYPluginCacheDataWithImageData(UIImage *image, NSData *imageDa
                 // decode image data only if in-memory cache missed
                 diskImage = SDImageCacheDecodeImageData(diskData, key, options, context);
                 if (diskImage) {
-                    NSUInteger cost = SDMemoryCacheCostForImage(diskImage);
+                    NSUInteger cost = diskImage.sd_memoryCost;
                     [self.memoryCache setObject:diskImage forKey:key cost:cost];
                 }
             }
@@ -120,7 +120,7 @@ static NSData * SDYYPluginCacheDataWithImageData(UIImage *image, NSData *imageDa
         }
             break;
         case SDImageCacheTypeMemory: {
-            NSUInteger cost = SDMemoryCacheCostForImage(image);
+            NSUInteger cost = image.sd_memoryCost;
             [self.memoryCache setObject:image forKey:key cost:cost];
         }
             break;
@@ -146,7 +146,7 @@ static NSData * SDYYPluginCacheDataWithImageData(UIImage *image, NSData *imageDa
         }
             break;
         case SDImageCacheTypeAll: {
-            NSUInteger cost = SDMemoryCacheCostForImage(image);
+            NSUInteger cost = image.sd_memoryCost;
             [self.memoryCache setObject:image forKey:key cost:cost];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                 NSData *data = SDYYPluginCacheDataWithImageData(image, imageData);

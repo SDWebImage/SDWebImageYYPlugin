@@ -67,8 +67,8 @@
 }
 
 - (void)removeExpiredData {
-    NSTimeInterval ageLimit = self.sd_config.maxCacheAge;
-    NSUInteger sizeLimit = self.sd_config.maxCacheSize;
+    NSTimeInterval ageLimit = self.sd_config.maxDiskAge;
+    NSUInteger sizeLimit = self.sd_config.maxDiskSize;
     
     [self trimToAge:ageLimit];
     [self trimToCost:sizeLimit];
