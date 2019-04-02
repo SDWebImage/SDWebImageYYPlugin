@@ -21,6 +21,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Setup YYCache to default cache
+    SDWebImageManager.defaultImageCache = [[YYCache alloc] initWithName:@"YYCache"];
+    
     [self.view addSubview:self.imageView];
     
     NSURL *url = [NSURL URLWithString:@"http://apng.onevcat.com/assets/elephant.png"];

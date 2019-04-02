@@ -57,7 +57,7 @@ To enable `YYCache` instead of `SDImageCache`, you can bind the cache for shared
 
 ```objectivec
 // Use `YYCache` for shared manager
-SDWebImageManger.defaultImageCache = [YYCache cacheWithName:@"default"];
+SDWebImageManger.defaultImageCache = [YYCache cacheWithName:@"name"];
 ```
 
 + Swift
