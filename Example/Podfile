@@ -6,7 +6,6 @@ install! 'cocoapods', :share_schemes_for_development_pods => ['SDWebImageYYPlugi
 target 'SDWebImageYYPlugin_Example' do
   pod 'SDWebImageYYPlugin', :path => '../'
   pod 'YYImage/WebP'
-  pod 'SDWebImage/Core',  git:'https://github.com/rs/SDWebImage.git', :branch => '5.x'
 
   target 'SDWebImageYYPlugin_Tests' do
     inherit! :search_paths
