@@ -45,6 +45,15 @@ static NSData * SDYYPluginCacheDataWithImageData(UIImage *image, NSData *imageDa
     
     // First check the in-memory cache...
     UIImage *image = [self.memoryCache objectForKey:key];
+    
+    if ((options & SDImageCacheDecodeFirstFrameOnly) && image.sd_isAnimated) {
+#if SD_MAC
+        image = [[NSImage alloc] initWithCGImage:image.CGImage scale:image.scale orientation:kCGImagePropertyOrientationUp];
+#else
+        image = [[UIImage alloc] initWithCGImage:image.CGImage scale:image.scale orientation:image.imageOrientation];
+#endif
+    }
+    
     BOOL shouldQueryMemoryOnly = (image && !(options & SDImageCacheQueryMemoryData));
     if (shouldQueryMemoryOnly) {
         if (doneBlock) {
