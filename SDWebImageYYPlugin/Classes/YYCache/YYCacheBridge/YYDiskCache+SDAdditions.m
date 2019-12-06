@@ -59,12 +59,12 @@
 }
 
 - (NSData *)extendedDataForKey:(NSString *)key {
-    id<NSObject, NSCoding> object =[self objectForKey:key];
+    id<NSObject, NSCoding> object = [self objectForKey:key];
     return [self.class getExtendedDataFromObject:object];
 }
 
 - (void)setExtendedData:(NSData *)extendedData forKey:(NSString *)key {
-    id<NSObject, NSCoding> object =[self objectForKey:key];
+    id<NSObject, NSCoding> object = [self objectForKey:key];
     [self.class setExtendedData:nil toObject:object];
     [self setObject:object forKey:key];
 }

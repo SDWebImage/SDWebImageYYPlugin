@@ -25,10 +25,16 @@
     SDWebImageManager.defaultImageCache = [[YYCache alloc] initWithName:@"YYCache"];
     
     [self.view addSubview:self.imageView];
+    [SDWebImageManager.sharedManager.imageCache clearWithCacheType:SDImageCacheTypeAll completion:nil];
+    SDWebImageManager.sharedManager.cacheSerializer = [SDWebImageCacheSerializer cacheSerializerWithBlock:^NSData * _Nullable(UIImage * _Nonnull image, NSData * _Nullable data, NSURL * _Nullable imageURL) {
+        image.sd_extendedObject = @"Extended Data Here";
+        return data;
+    }];
     
     NSURL *url = [NSURL URLWithString:@"http://apng.onevcat.com/assets/elephant.png"];
     [self.imageView sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        NSLog(@"%@", error);
+        NSString *extentedObject = (NSString *)image.sd_extendedObject;
+        NSLog(@"%@", extentedObject);
     }];
 }
 
