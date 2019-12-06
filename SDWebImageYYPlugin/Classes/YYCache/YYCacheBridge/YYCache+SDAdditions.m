@@ -36,9 +36,9 @@ static NSData * SDYYPluginCacheDataWithImageData(UIImage *image, NSData *imageDa
         return nil;
     }
     
-    if ([context valueForKey:SDWebImageContextImageTransformer]) {
+    id<SDImageTransformer> transformer = context[SDWebImageContextImageTransformer];
+    if (transformer) {
         // grab the transformed disk image if transformer provided
-        id<SDImageTransformer> transformer = [context valueForKey:SDWebImageContextImageTransformer];
         NSString *transformerKey = [transformer transformerKey];
         key = SDTransformedKeyForKey(key, transformerKey);
     }
@@ -46,12 +46,25 @@ static NSData * SDYYPluginCacheDataWithImageData(UIImage *image, NSData *imageDa
     // First check the in-memory cache...
     UIImage *image = [self.memoryCache objectForKey:key];
     
-    if ((options & SDImageCacheDecodeFirstFrameOnly) && image.sd_isAnimated) {
+    if (image) {
+        if (options & SDImageCacheDecodeFirstFrameOnly) {
+            // Ensure static image
+            Class animatedImageClass = image.class;
+            if (image.sd_isAnimated || ([animatedImageClass isSubclassOfClass:[UIImage class]] && [animatedImageClass conformsToProtocol:@protocol(SDAnimatedImage)])) {
 #if SD_MAC
-        image = [[NSImage alloc] initWithCGImage:image.CGImage scale:image.scale orientation:kCGImagePropertyOrientationUp];
+                image = [[NSImage alloc] initWithCGImage:image.CGImage scale:image.scale orientation:kCGImagePropertyOrientationUp];
 #else
-        image = [[UIImage alloc] initWithCGImage:image.CGImage scale:image.scale orientation:image.imageOrientation];
+                image = [[UIImage alloc] initWithCGImage:image.CGImage scale:image.scale orientation:image.imageOrientation];
 #endif
+            }
+        } else if (options & SDImageCacheMatchAnimatedImageClass) {
+            // Check image class matching
+            Class animatedImageClass = image.class;
+            Class desiredImageClass = context[SDWebImageContextAnimatedImageClass];
+            if (desiredImageClass && ![animatedImageClass isSubclassOfClass:desiredImageClass]) {
+                image = nil;
+            }
+        }
     }
     
     BOOL shouldQueryMemoryOnly = (image && !(options & SDImageCacheQueryMemoryData));
@@ -69,22 +82,48 @@ static NSData * SDYYPluginCacheDataWithImageData(UIImage *image, NSData *imageDa
     // 2. in-memory cache miss & diskDataSync
     BOOL shouldQueryDiskSync = ((image && options & SDImageCacheQueryMemoryDataSync) ||
                                 (!image && options & SDImageCacheQueryDiskDataSync));
-    void(^queryDiskBlock)(NSData *) =  ^(NSData *diskData){
+    void(^queryDiskBlock)(NSData *) = ^(NSData *diskData) {
         if (operation.isCancelled) {
-            // do not call the completion if cancelled
+            if (doneBlock) {
+                doneBlock(nil, nil, SDImageCacheTypeNone);
+            }
             return;
         }
         
         @autoreleasepool {
             UIImage *diskImage;
-            SDImageCacheType cacheType = SDImageCacheTypeDisk;
+            SDImageCacheType cacheType = SDImageCacheTypeNone;
             if (image) {
                 // the image is from in-memory cache, but need image data
                 diskImage = image;
                 cacheType = SDImageCacheTypeMemory;
             } else if (diskData) {
+                cacheType = SDImageCacheTypeDisk;
                 // decode image data only if in-memory cache missed
                 diskImage = SDImageCacheDecodeImageData(diskData, key, options, context);
+                if (diskImage) {
+                    // Check extended data
+                    NSData *extendedData = [YYDiskCache getExtendedDataFromObject:diskData];
+                    if (extendedData) {
+                        id extendedObject;
+                        if (@available(iOS 11, tvOS 11, macOS 10.13, watchOS 4, *)) {
+                            NSError *error;
+                            NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingFromData:extendedData error:&error];
+                            unarchiver.requiresSecureCoding = NO;
+                            extendedObject = [unarchiver decodeTopLevelObjectForKey:NSKeyedArchiveRootObjectKey error:&error];
+                            if (error) {
+                                NSLog(@"NSKeyedUnarchiver unarchive failed with error: %@", error);
+                            }
+                        } else {
+                            @try {
+                                extendedObject = [NSKeyedUnarchiver unarchiveObjectWithData:extendedData];
+                            } @catch (NSException *exception) {
+                                NSLog(@"NSKeyedUnarchiver unarchive failed with exception: %@", exception);
+                            }
+                        }
+                        diskImage.sd_extendedObject = extendedObject;
+                    }
+                }
                 if (diskImage) {
                     NSUInteger cost = diskImage.sd_memoryCost;
                     [self.memoryCache setObject:diskImage forKey:key cost:cost];
@@ -108,7 +147,7 @@ static NSData * SDYYPluginCacheDataWithImageData(UIImage *image, NSData *imageDa
         queryDiskBlock(diskData);
     } else {
         // YYDiskCache's completion block is called in the global queue
-        [self.diskCache objectForKey:key withBlock:^(NSString * _Nonnull key, NSObject<NSCoding> *  _Nullable object) {
+        [self.diskCache objectForKey:key withBlock:^(NSString * _Nonnull key, id<NSObject, NSCoding> _Nullable object) {
             NSData *diskData = nil;
             if ([object isKindOfClass:[NSData class]]) {
                 diskData = (NSData *)object;
@@ -118,6 +157,49 @@ static NSData * SDYYPluginCacheDataWithImageData(UIImage *image, NSData *imageDa
     }
     
     return operation;
+}
+
+- (void)storeImageToDisk:(UIImage *)image imageData:(NSData *)imageData forKey:(NSString *)key completion:(SDWebImageNoParamsBlock)completionBlock {
+    NSData *data = SDYYPluginCacheDataWithImageData(image, imageData);
+    if (!data) {
+        // SDImageCache does not remove object if `data` is nil
+        if (completionBlock) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock();
+            });
+        }
+        return;
+    }
+    if (image) {
+        // Check extended data
+        id extendedObject = image.sd_extendedObject;
+        if ([extendedObject conformsToProtocol:@protocol(NSCoding)]) {
+            NSData *extendedData;
+            if (@available(iOS 11, tvOS 11, macOS 10.13, watchOS 4, *)) {
+                NSError *error;
+                extendedData = [NSKeyedArchiver archivedDataWithRootObject:extendedObject requiringSecureCoding:NO error:&error];
+                if (error) {
+                    NSLog(@"NSKeyedArchiver archive failed with error: %@", error);
+                }
+            } else {
+                @try {
+                    extendedData = [NSKeyedArchiver archivedDataWithRootObject:extendedObject];
+                } @catch (NSException *exception) {
+                    NSLog(@"NSKeyedArchiver archive failed with exception: %@", exception);
+                }
+            }
+            if (extendedData) {
+                [YYDiskCache setExtendedData:extendedData toObject:data];
+            }
+        }
+    }
+    [self.diskCache setObject:data forKey:key withBlock:^{
+        if (completionBlock) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock();
+            });
+        }
+    }];
 }
 
 - (void)storeImage:(UIImage *)image imageData:(NSData *)imageData forKey:(NSString *)key cacheType:(SDImageCacheType)cacheType completion:(SDWebImageNoParamsBlock)completionBlock {
@@ -131,26 +213,14 @@ static NSData * SDYYPluginCacheDataWithImageData(UIImage *image, NSData *imageDa
         case SDImageCacheTypeMemory: {
             NSUInteger cost = image.sd_memoryCost;
             [self.memoryCache setObject:image forKey:key cost:cost];
+            if (completionBlock) {
+                completionBlock();
+            }
         }
             break;
         case SDImageCacheTypeDisk: {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                NSData *data = SDYYPluginCacheDataWithImageData(image, imageData);
-                if (!data) {
-                    // SDImageCache does not remove object if `data` is nil
-                    if (completionBlock) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            completionBlock();
-                        });
-                    }
-                }
-                [self.diskCache setObject:data forKey:key withBlock:^{
-                    if (completionBlock) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            completionBlock();
-                        });
-                    }
-                }];
+                [self storeImageToDisk:image imageData:imageData forKey:key completion:completionBlock];
             });
         }
             break;
@@ -158,22 +228,7 @@ static NSData * SDYYPluginCacheDataWithImageData(UIImage *image, NSData *imageDa
             NSUInteger cost = image.sd_memoryCost;
             [self.memoryCache setObject:image forKey:key cost:cost];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                NSData *data = SDYYPluginCacheDataWithImageData(image, imageData);
-                if (!data) {
-                    // SDImageCache does not remove object if `data` is nil
-                    if (completionBlock) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            completionBlock();
-                        });
-                    }
-                }
-                [self.diskCache setObject:data forKey:key withBlock:^{
-                    if (completionBlock) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            completionBlock();
-                        });
-                    }
-                }];
+                [self storeImageToDisk:image imageData:imageData forKey:key completion:completionBlock];
             });
         }
             break;

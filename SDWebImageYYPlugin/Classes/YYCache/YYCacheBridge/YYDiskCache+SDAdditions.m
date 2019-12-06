@@ -42,7 +42,7 @@
 }
 
 - (NSData *)dataForKey:(NSString *)key {
-    NSObject<NSCoding> *object = (NSObject<NSCoding> *)[self objectForKey:key];
+    id<NSObject, NSCoding> object = [self objectForKey:key];
     if ([object isKindOfClass:[NSData class]]) {
         return (NSData *)object;
     } else {
@@ -56,6 +56,17 @@
     }
     
     [self setObject:data forKey:key];
+}
+
+- (NSData *)extendedDataForKey:(NSString *)key {
+    id<NSObject, NSCoding> object = [self objectForKey:key];
+    return [self.class getExtendedDataFromObject:object];
+}
+
+- (void)setExtendedData:(NSData *)extendedData forKey:(NSString *)key {
+    id<NSObject, NSCoding> object = [self objectForKey:key];
+    [self.class setExtendedData:nil toObject:object];
+    [self setObject:object forKey:key];
 }
 
 - (void)removeDataForKey:(NSString *)key {
