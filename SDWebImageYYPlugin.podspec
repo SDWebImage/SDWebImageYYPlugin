@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SDWebImageYYPlugin'
-  s.version          = '0.2.1'
+  s.version          = '0.3.0'
   s.summary          = 'A SDWebImage plugin to integrate YYImage & YYCache for image rendering & caching.'
 
 # This description is used to generate tags and improve search results.
@@ -22,18 +22,16 @@ TODO: Add long description of the pod here.
                        DESC
 
   s.homepage         = 'https://github.com/SDWebImage/SDWebImageYYPlugin'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'DreamPiggy' => 'lizhuoli1126@126.com' }
   s.source           = { :git => 'https://github.com/SDWebImage/SDWebImageYYPlugin.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'SDWebImageYYPlugin/Module/SDWebImageYYPlugin.h'
   s.module_map = 'SDWebImageYYPlugin/Module/SDWebImageYYPlugin.modulemap'
 
-  s.dependency 'SDWebImage/Core', '~> 5.0'
+  s.dependency 'SDWebImage/Core', '~> 5.4'
 
   s.subspec 'YYCache' do |ss|
     ss.dependency 'YYCache'
