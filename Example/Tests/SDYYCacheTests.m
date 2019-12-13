@@ -10,13 +10,6 @@
 static NSString *kTestImageKeyJPEG = @"TestImageKey.jpg";
 static NSString *kTestImageKeyPNG = @"TestImageKey.png";
 
-@interface SDImageCache ()
-
-@property (nonatomic, strong, nonnull) id<SDMemoryCache> memCache;
-@property (nonatomic, strong, nonnull) id<SDDiskCache> diskCache;
-
-@end
-
 @interface SDYYCacheTests : SDTestCase
 
 @property (nonatomic, class, readonly) YYCache *sharedCache;
@@ -41,8 +34,8 @@ static NSString *kTestImageKeyPNG = @"TestImageKey.png";
     NSString *nameSpace = @"YYMemoryCache";
     NSString *cacheDictionary = [self makeDiskCachePath:nameSpace];
     SDImageCache *cache = [[SDImageCache alloc] initWithNamespace:nameSpace diskCacheDirectory:cacheDictionary config:config];
-    YYMemoryCache *memCache = cache.memCache;
-    expect([memCache isKindOfClass:[YYMemoryCache class]]).to.beTruthy();
+    YYMemoryCache *memoryCache = cache.memoryCache;
+    expect([memoryCache isKindOfClass:[YYMemoryCache class]]).to.beTruthy();
 }
 
 - (void)testCustomDiskCache {
