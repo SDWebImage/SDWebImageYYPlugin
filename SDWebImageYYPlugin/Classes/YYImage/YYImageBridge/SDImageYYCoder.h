@@ -14,6 +14,9 @@
  */
 @interface SDImageYYCoder : NSObject <SDImageCoder, SDProgressiveImageCoder, SDAnimatedImageCoder>
 
+/**
+ The shared coder instance.
+ */
 @property (nonatomic, class, readonly, nonnull) SDImageYYCoder *sharedCoder;
 
 /**

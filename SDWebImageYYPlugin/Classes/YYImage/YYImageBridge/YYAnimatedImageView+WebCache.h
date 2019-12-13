@@ -8,6 +8,7 @@
 #import <YYImage/YYAnimatedImageView.h>
 #import <SDWebImage/SDWebImage.h>
 
+/// YYAnimatedImageView Category to support load image with SDWebImage loading system.
 @interface YYAnimatedImageView (WebCache)
 
 /**

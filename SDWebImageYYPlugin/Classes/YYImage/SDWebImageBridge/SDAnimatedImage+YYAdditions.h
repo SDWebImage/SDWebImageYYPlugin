@@ -8,6 +8,7 @@
 #import <SDWebImage/SDWebImage.h>
 #import <YYImage/YYAnimatedImageView.h>
 
+/// SDAnimatedImage category to supports `YYAnimatedImage` protocol, which allows using `SDAnimatedImage` inside `YYAnimatedImageView`
 @interface SDAnimatedImage (YYAdditions) <YYAnimatedImage>
 
 @end

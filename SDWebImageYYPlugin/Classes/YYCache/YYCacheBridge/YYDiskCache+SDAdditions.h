@@ -8,6 +8,7 @@
 #import <YYCache/YYDiskCache.h>
 #import <SDWebImage/SDWebImage.h>
 
+/// YYDiskCache category to support `SDDiskCache` protocol. This allow user who prefer YYDiskCache to be used as SDWebImage's custom disk cache
 @interface YYDiskCache (SDAdditions) <SDDiskCache>
 
 @end

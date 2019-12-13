@@ -8,6 +8,7 @@
 #import <YYCache/YYMemoryCache.h>
 #import <SDWebImage/SDWebImage.h>
 
+/// YYMemoryCache category to support `SDMemoryCache` protocol. This allow user who prefer YYMemoryCache to be used as SDWebImage's custom memory cache
 @interface YYMemoryCache (SDAdditions) <SDMemoryCache>
 
 @end
