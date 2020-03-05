@@ -65,3 +65,44 @@
 
 @end
 
+@implementation YYImage (Metadata)
+
+- (BOOL)sd_isAnimated {
+    return YES;
+}
+
+- (NSUInteger)sd_imageLoopCount {
+    return self.animatedImageLoopCount;
+}
+
+- (void)setSd_imageLoopCount:(NSUInteger)sd_imageLoopCount {
+    return;
+}
+
+- (SDImageFormat)sd_imageFormat {
+    switch (self.animatedImageType) {
+        case YYImageTypeJPEG:
+        case YYImageTypeJPEG2000:
+            return SDImageFormatJPEG;
+        case YYImageTypePNG:
+            return SDImageFormatPNG;
+        case YYImageTypeGIF:
+            return SDImageFormatGIF;
+        case YYImageTypeTIFF:
+            return SDImageFormatTIFF;
+        case YYImageTypeWebP:
+            return SDImageFormatWebP;
+        default:
+            return SDImageFormatUndefined;
+    }
+}
+
+- (void)setSd_imageFormat:(SDImageFormat)sd_imageFormat {
+    return;
+}
+
+- (BOOL)sd_isVector {
+    return NO;
+}
+
+@end
