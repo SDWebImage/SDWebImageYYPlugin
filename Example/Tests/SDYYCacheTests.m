@@ -34,7 +34,7 @@ static NSString *kTestImageKeyPNG = @"TestImageKey.png";
     NSString *nameSpace = @"YYMemoryCache";
     NSString *cacheDictionary = [self makeDiskCachePath:nameSpace];
     SDImageCache *cache = [[SDImageCache alloc] initWithNamespace:nameSpace diskCacheDirectory:cacheDictionary config:config];
-    YYMemoryCache *memoryCache = cache.memoryCache;
+    id memoryCache = cache.memoryCache;
     expect([memoryCache isKindOfClass:[YYMemoryCache class]]).to.beTruthy();
 }
 
@@ -44,7 +44,7 @@ static NSString *kTestImageKeyPNG = @"TestImageKey.png";
     NSString *nameSpace = @"YYDiskCache";
     NSString *cacheDictionary = [self makeDiskCachePath:nameSpace];
     SDImageCache *cache = [[SDImageCache alloc] initWithNamespace:nameSpace diskCacheDirectory:cacheDictionary config:config];
-    YYDiskCache *diskCache = cache.diskCache;
+    id diskCache = cache.diskCache;
     expect([diskCache isKindOfClass:[YYDiskCache class]]).to.beTruthy();
 }
 
