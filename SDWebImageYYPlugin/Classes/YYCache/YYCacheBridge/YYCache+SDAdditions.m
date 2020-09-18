@@ -169,9 +169,9 @@ static NSData * SDYYPluginCacheDataWithImageData(UIImage *image, NSData *imageDa
         queryDiskBlock(diskData);
     } else {
         // YYDiskCache's completion block is called in the global queue
-        [self.diskCache objectForKey:key withBlock:^(NSString * _Nonnull key, id<NSObject, NSCoding> _Nullable object) {
+        [self.diskCache objectForKey:key withBlock:^(NSString * _Nonnull key, id<NSCoding>  _Nullable object) {
             NSData *diskData = nil;
-            if ([object isKindOfClass:[NSData class]]) {
+            if ([(id<NSObject>)object isKindOfClass:[NSData class]]) {
                 diskData = (NSData *)object;
             }
             queryDiskBlock(diskData);
