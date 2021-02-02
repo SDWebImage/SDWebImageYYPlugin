@@ -26,12 +26,12 @@ TODO: Add long description of the pod here.
   s.author           = { 'DreamPiggy' => 'lizhuoli1126@126.com' }
   s.source           = { :git => 'https://github.com/SDWebImage/SDWebImageYYPlugin.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files = 'SDWebImageYYPlugin/Module/SDWebImageYYPlugin.h'
   s.module_map = 'SDWebImageYYPlugin/Module/SDWebImageYYPlugin.modulemap'
 
-  s.dependency 'SDWebImage/Core', '~> 5.7'
+  s.dependency 'SDWebImage/Core', '~> 5.10'
 
   s.subspec 'YYCache' do |ss|
     ss.dependency 'YYCache'
