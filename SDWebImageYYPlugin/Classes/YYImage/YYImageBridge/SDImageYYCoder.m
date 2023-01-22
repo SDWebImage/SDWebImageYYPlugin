@@ -45,6 +45,7 @@ static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
 @interface SDImageYYCoder ()
 
 @property (nonatomic, strong) YYImageDecoder *decoder;
+@property (nonatomic, assign) BOOL lazyDecode;
 
 @end
 
@@ -190,7 +191,17 @@ static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
                 scale = 1;
             }
         }
-        self.decoder = [[YYImageDecoder alloc] initWithScale:scale];
+        BOOL lazyDecode = NO; // Defaults NO for animated image coder
+        NSNumber *lazyDecodeValue = options[SDImageCoderDecodeUseLazyDecoding];
+        if (lazyDecodeValue != nil) {
+            lazyDecode = lazyDecodeValue.boolValue;
+        }
+        _lazyDecode = lazyDecode;
+        YYImageDecoder *decoder = [[YYImageDecoder alloc] initWithScale:scale];
+        if (!decoder) {
+            return nil;
+        }
+        _decoder = decoder;
     }
     
     return self;
@@ -226,11 +237,17 @@ static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
                 scale = 1;
             }
         }
+        BOOL lazyDecode = NO; // Defaults NO for animated image coder
+        NSNumber *lazyDecodeValue = options[SDImageCoderDecodeUseLazyDecoding];
+        if (lazyDecodeValue != nil) {
+            lazyDecode = lazyDecodeValue.boolValue;
+        }
+        _lazyDecode = lazyDecode;
         YYImageDecoder *decoder = [YYImageDecoder decoderWithData:data scale:scale];
         if (!decoder) {
             return nil;
         }
-        self.decoder = decoder;
+        _decoder = decoder;
     }
     return self;
 }
@@ -248,7 +265,7 @@ static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
 }
 
 - (UIImage *)animatedImageFrameAtIndex:(NSUInteger)index {
-    YYImageFrame *frame = [self.decoder frameAtIndex:index decodeForDisplay:NO];
+    YYImageFrame *frame = [self.decoder frameAtIndex:index decodeForDisplay:!self.lazyDecode];
     return frame.image;
 }
 
