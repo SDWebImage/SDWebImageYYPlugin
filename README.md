@@ -94,7 +94,7 @@ SDImageCacheConfig.default.diskCacheClass = YYDiskCache.self
 ## Requirements
 
 + iOS 9+
-+ Xcode 11+
++ Xcode 12+
 
 ## Installation
 

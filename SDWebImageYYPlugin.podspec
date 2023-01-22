@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SDWebImageYYPlugin'
-  s.version          = '0.7.0'
+  s.version          = '0.8.0'
   s.summary          = 'A SDWebImage plugin to integrate YYImage & YYCache for image rendering & caching.'
 
 # This description is used to generate tags and improve search results.
