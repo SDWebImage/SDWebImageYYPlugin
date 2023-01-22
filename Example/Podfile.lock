@@ -1,15 +1,15 @@
 PODS:
   - Expecta (1.0.6)
-  - SDWebImage/Core (5.10.3)
-  - SDWebImageYYPlugin (0.6.0):
-    - SDWebImage/Core (~> 5.10)
-    - SDWebImageYYPlugin/YYCache (= 0.6.0)
-    - SDWebImageYYPlugin/YYImage (= 0.6.0)
-  - SDWebImageYYPlugin/YYCache (0.6.0):
-    - SDWebImage/Core (~> 5.10)
+  - SDWebImage/Core (5.15.0)
+  - SDWebImageYYPlugin (0.7.0):
+    - SDWebImage/Core (~> 5.15)
+    - SDWebImageYYPlugin/YYCache (= 0.7.0)
+    - SDWebImageYYPlugin/YYImage (= 0.7.0)
+  - SDWebImageYYPlugin/YYCache (0.7.0):
+    - SDWebImage/Core (~> 5.15)
     - YYCache
-  - SDWebImageYYPlugin/YYImage (0.6.0):
-    - SDWebImage/Core (~> 5.10)
+  - SDWebImageYYPlugin/YYImage (0.7.0):
+    - SDWebImage/Core (~> 5.15)
     - YYImage/Core
   - YYCache (1.0.4)
   - YYImage/Core (1.0.4)
@@ -34,11 +34,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
-  SDWebImage: e378178472b735e84b007bfb55514c97948a0598
-  SDWebImageYYPlugin: 44e88320fc9604b6abb09d8271504bdd986dcf2e
+  SDWebImage: 9bec4c5cdd9579e1f57104735ee0c37df274d593
+  SDWebImageYYPlugin: 9ff87103cef7b39ac608303d756f1ce9899b9012
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
 
 PODFILE CHECKSUM: 71679fe963dea37bf4e76ca762d8b118854ce524
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.11.3

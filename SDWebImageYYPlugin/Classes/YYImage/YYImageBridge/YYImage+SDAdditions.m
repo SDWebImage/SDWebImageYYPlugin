@@ -8,6 +8,24 @@
 #import "YYImage+SDAdditions.h"
 #import <objc/runtime.h>
 
+static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
+    switch (type) {
+        case YYImageTypeJPEG:
+        case YYImageTypeJPEG2000:
+            return SDImageFormatJPEG;
+        case YYImageTypePNG:
+            return SDImageFormatPNG;
+        case YYImageTypeGIF:
+            return SDImageFormatGIF;
+        case YYImageTypeTIFF:
+            return SDImageFormatTIFF;
+        case YYImageTypeWebP:
+            return SDImageFormatWebP;
+        default:
+            return SDImageFormatUndefined;
+    }
+}
+
 @implementation YYImage (SDAdditions)
 
 #pragma mark - SDAnimatedImage
@@ -80,21 +98,7 @@
 }
 
 - (SDImageFormat)sd_imageFormat {
-    switch (self.animatedImageType) {
-        case YYImageTypeJPEG:
-        case YYImageTypeJPEG2000:
-            return SDImageFormatJPEG;
-        case YYImageTypePNG:
-            return SDImageFormatPNG;
-        case YYImageTypeGIF:
-            return SDImageFormatGIF;
-        case YYImageTypeTIFF:
-            return SDImageFormatTIFF;
-        case YYImageTypeWebP:
-            return SDImageFormatWebP;
-        default:
-            return SDImageFormatUndefined;
-    }
+    return SDImageFormatFromYYImageType(self.animatedImageType);
 }
 
 - (void)setSd_imageFormat:(SDImageFormat)sd_imageFormat {

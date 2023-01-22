@@ -45,6 +45,7 @@ static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
 @interface SDImageYYCoder ()
 
 @property (nonatomic, strong) YYImageDecoder *decoder;
+@property (nonatomic, assign) BOOL lazyDecode;
 
 @end
 
@@ -123,6 +124,24 @@ static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
 }
 
 - (NSData *)encodedDataWithImage:(UIImage *)image format:(SDImageFormat)format options:(SDImageCoderOptions *)options {
+    if (!image) {
+        return nil;
+    }
+    
+    NSArray<SDImageFrame *> *frames = [SDImageCoderHelper framesFromAnimatedImage:image];
+    if (!frames || frames.count == 0) {
+        SDImageFrame *frame = [SDImageFrame frameWithImage:image duration:0];
+        frames = @[frame];
+    }
+    return [self encodedDataWithFrames:frames loopCount:image.sd_imageLoopCount format:format options:options];
+}
+
+- (NSData *)encodedDataWithFrames:(NSArray<SDImageFrame *> *)frames loopCount:(NSUInteger)loopCount format:(SDImageFormat)format options:(SDImageCoderOptions *)options {
+    UIImage *image = frames.firstObject.image; // Primary image
+    if (!image) {
+        return nil;
+    }
+
     double compressionQuality = 1;
     if (options[SDImageCoderEncodeCompressionQuality]) {
         compressionQuality = [options[SDImageCoderEncodeCompressionQuality] doubleValue];
@@ -133,15 +152,14 @@ static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
     YYImageType type = YYImageTypeFromSDImageFormat(format);
     BOOL encodeFirstFrame = [options[SDImageCoderEncodeFirstFrameOnly] boolValue];
     
-    NSArray<SDImageFrame *> *frames = [SDImageCoderHelper framesFromAnimatedImage:image];
-    if (encodeFirstFrame || frames.count == 0) {
+    if (encodeFirstFrame || frames.count <= 1) {
         // Static Image
         imageData = [YYImageEncoder encodeImage:image type:type quality:compressionQuality];
     } else {
         // Animated Image
         YYImageEncoder *encoder = [[YYImageEncoder alloc] initWithType:type];
         encoder.quality = compressionQuality;
-        encoder.loopCount = image.sd_imageLoopCount;
+        encoder.loopCount = loopCount;
         if (!encoder) {
             return nil;
         }
@@ -151,7 +169,6 @@ static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
         
         imageData = [encoder encode];
     }
-    
     
     return imageData;
 }
@@ -174,7 +191,17 @@ static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
                 scale = 1;
             }
         }
-        self.decoder = [[YYImageDecoder alloc] initWithScale:scale];
+        BOOL lazyDecode = NO; // Defaults NO for animated image coder
+        NSNumber *lazyDecodeValue = options[SDImageCoderDecodeUseLazyDecoding];
+        if (lazyDecodeValue != nil) {
+            lazyDecode = lazyDecodeValue.boolValue;
+        }
+        _lazyDecode = lazyDecode;
+        YYImageDecoder *decoder = [[YYImageDecoder alloc] initWithScale:scale];
+        if (!decoder) {
+            return nil;
+        }
+        _decoder = decoder;
     }
     
     return self;
@@ -210,11 +237,17 @@ static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
                 scale = 1;
             }
         }
+        BOOL lazyDecode = NO; // Defaults NO for animated image coder
+        NSNumber *lazyDecodeValue = options[SDImageCoderDecodeUseLazyDecoding];
+        if (lazyDecodeValue != nil) {
+            lazyDecode = lazyDecodeValue.boolValue;
+        }
+        _lazyDecode = lazyDecode;
         YYImageDecoder *decoder = [YYImageDecoder decoderWithData:data scale:scale];
         if (!decoder) {
             return nil;
         }
-        self.decoder = decoder;
+        _decoder = decoder;
     }
     return self;
 }
@@ -232,7 +265,7 @@ static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
 }
 
 - (UIImage *)animatedImageFrameAtIndex:(NSUInteger)index {
-    YYImageFrame *frame = [self.decoder frameAtIndex:index decodeForDisplay:NO];
+    YYImageFrame *frame = [self.decoder frameAtIndex:index decodeForDisplay:!self.lazyDecode];
     return frame.image;
 }
 

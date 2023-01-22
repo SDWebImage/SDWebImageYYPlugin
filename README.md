@@ -7,13 +7,17 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/SDWebImage/SDWebImageYYPlugin)
 [![codecov](https://codecov.io/gh/SDWebImage/SDWebImageYYPlugin/branch/master/graph/badge.svg)](https://codecov.io/gh/SDWebImage/SDWebImageYYPlugin)
 
-
 ## What's for
 SDWebImageYYPlugin is a plugin for [SDWebImage](https://github.com/rs/SDWebImage/) framework, which provide the image loading support for [YYImage](https://github.com/ibireme/YYImage) (including YYImage's decoding system and `YYAnimatedImageView`) and [YYCache](https://github.com/ibireme/YYCache) cache system.
 
 By using SDWebImageYYPlugin, you can use all you familiar SDWebImage's loading method, on the `YYAnimatedImageView`.
 
 And you can also use `YYCache` instead of `SDImageCache` for image cache system, which may better memory cache performance (By taking advanced of LRU algorithm), and disk cache performance (By taking advanced of sqlite blob storage)
+
+## Long term maintenance
+This repo was created as a showcase how power the SDWebImage 5.0's customization can be. But actually is not recommended to use in commercial applications.
+
+Since the upstream YYImage/YYCache has no longer maintained, and SDWebImage itself has become more and more performant than previous versions. I will not always up-to-date the compatibility with SDWebImage's internal changes from version to version. This repo will be deprecated in the future (like SDWebImage 6.0). But the PR for bugfix is still welcomed.
 
 ## Usage
 

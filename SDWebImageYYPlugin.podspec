@@ -31,7 +31,7 @@ TODO: Add long description of the pod here.
   s.source_files = 'SDWebImageYYPlugin/Module/SDWebImageYYPlugin.h'
   s.module_map = 'SDWebImageYYPlugin/Module/SDWebImageYYPlugin.modulemap'
 
-  s.dependency 'SDWebImage/Core', '~> 5.10'
+  s.dependency 'SDWebImage/Core', '~> 5.15'
 
   s.subspec 'YYCache' do |ss|
     ss.dependency 'YYCache'
