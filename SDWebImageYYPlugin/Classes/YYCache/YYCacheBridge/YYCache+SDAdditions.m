@@ -89,10 +89,10 @@ static void SDYYPluginArchiveObject(NSData *data, UIImage *image) {
     if (options & SDWebImagePreloadAllFrames) cacheOptions |= SDImageCachePreloadAllFrames;
     if (options & SDWebImageMatchAnimatedImageClass) cacheOptions |= SDImageCacheMatchAnimatedImageClass;
     
-    return [self queryImageForKey:key cacheOptions:cacheOptions context:context cacheType:SDImageCacheTypeAll completion:doneBlock];
+    return [self queryCacheOperationForKey:key options:cacheOptions context:context cacheType:queryCacheType done:doneBlock];
 }
 
-- (id<SDWebImageOperation>)queryImageForKey:(NSString *)key cacheOptions:(SDImageCacheOptions)options context:(SDWebImageContext *)context cacheType:(SDImageCacheType)queryCacheType completion:(SDImageCacheQueryCompletionBlock)doneBlock {
+- (id<SDWebImageOperation>)queryCacheOperationForKey:(nullable NSString *)key options:(SDImageCacheOptions)options context:(nullable SDWebImageContext *)context cacheType:(SDImageCacheType)queryCacheType done:(nullable SDImageCacheQueryCompletionBlock)doneBlock {
     if (!key) {
         if (doneBlock) {
             doneBlock(nil, nil, SDImageCacheTypeNone);
