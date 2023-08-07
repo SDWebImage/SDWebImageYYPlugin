@@ -189,7 +189,7 @@ static void SDYYPluginArchiveObject(NSData *data, UIImage *image) {
                 shouldCacheToMomery = NO;
             }
             // decode image data only if in-memory cache missed
-            diskImage = SDImageCacheDecodeImageData(diskData, key, options, context);
+            diskImage = SDImageCacheDecodeImageData(diskData, key, [[self class] imageOptionsFromCacheOptions:options], context);
             SDYYPluginUnarchiveObject(diskData, diskImage);
             if (shouldCacheToMomery && diskImage) {
                 NSUInteger cost = diskImage.sd_memoryCost;
@@ -438,6 +438,19 @@ static void SDYYPluginArchiveObject(NSData *data, UIImage *image) {
         }
             break;
     }
+}
+
+#pragma mark - Helper
+
++ (SDWebImageOptions)imageOptionsFromCacheOptions:(SDImageCacheOptions)cacheOptions {
+    SDWebImageOptions options = 0;
+    if (cacheOptions & SDImageCacheScaleDownLargeImages) options |= SDWebImageScaleDownLargeImages;
+    if (cacheOptions & SDImageCacheDecodeFirstFrameOnly) options |= SDWebImageDecodeFirstFrameOnly;
+    if (cacheOptions & SDImageCachePreloadAllFrames) options |= SDWebImagePreloadAllFrames;
+    if (cacheOptions & SDImageCacheAvoidDecodeImage) options |= SDWebImageAvoidDecodeImage;
+    if (cacheOptions & SDImageCacheMatchAnimatedImageClass) options |= SDWebImageMatchAnimatedImageClass;
+    
+    return options;
 }
 
 @end
