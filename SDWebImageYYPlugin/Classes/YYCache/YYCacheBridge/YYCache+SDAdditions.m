@@ -79,20 +79,6 @@ static void SDYYPluginArchiveObject(NSData *data, UIImage *image) {
 }
 
 - (id<SDWebImageOperation>)queryImageForKey:(NSString *)key options:(SDWebImageOptions)options context:(SDWebImageContext *)context cacheType:(SDImageCacheType)queryCacheType completion:(SDImageCacheQueryCompletionBlock)doneBlock {
-    SDImageCacheOptions cacheOptions = 0;
-    if (options & SDWebImageQueryMemoryData) cacheOptions |= SDImageCacheQueryMemoryData;
-    if (options & SDWebImageQueryMemoryDataSync) cacheOptions |= SDImageCacheQueryMemoryDataSync;
-    if (options & SDWebImageQueryDiskDataSync) cacheOptions |= SDImageCacheQueryDiskDataSync;
-    if (options & SDWebImageScaleDownLargeImages) cacheOptions |= SDImageCacheScaleDownLargeImages;
-    if (options & SDWebImageAvoidDecodeImage) cacheOptions |= SDImageCacheAvoidDecodeImage;
-    if (options & SDWebImageDecodeFirstFrameOnly) cacheOptions |= SDImageCacheDecodeFirstFrameOnly;
-    if (options & SDWebImagePreloadAllFrames) cacheOptions |= SDImageCachePreloadAllFrames;
-    if (options & SDWebImageMatchAnimatedImageClass) cacheOptions |= SDImageCacheMatchAnimatedImageClass;
-    
-    return [self queryCacheOperationForKey:key options:cacheOptions context:context cacheType:queryCacheType done:doneBlock];
-}
-
-- (id<SDWebImageOperation>)queryCacheOperationForKey:(nullable NSString *)key options:(SDImageCacheOptions)options context:(nullable SDWebImageContext *)context cacheType:(SDImageCacheType)queryCacheType done:(nullable SDImageCacheQueryCompletionBlock)doneBlock {
     if (!key) {
         if (doneBlock) {
             doneBlock(nil, nil, SDImageCacheTypeNone);
@@ -114,7 +100,7 @@ static void SDYYPluginArchiveObject(NSData *data, UIImage *image) {
     }
     
     if (image) {
-        if (options & SDImageCacheDecodeFirstFrameOnly) {
+        if (options & SDWebImageDecodeFirstFrameOnly) {
             // Ensure static image
             if (image.sd_isAnimated) {
 #if SD_MAC
@@ -123,7 +109,7 @@ static void SDYYPluginArchiveObject(NSData *data, UIImage *image) {
                 image = [[UIImage alloc] initWithCGImage:image.CGImage scale:image.scale orientation:image.imageOrientation];
 #endif
             }
-        } else if (options & SDImageCacheMatchAnimatedImageClass) {
+        } else if (options & SDWebImageMatchAnimatedImageClass) {
             // Check image class matching
             Class animatedImageClass = image.class;
             Class desiredImageClass = context[SDWebImageContextAnimatedImageClass];
@@ -133,7 +119,7 @@ static void SDYYPluginArchiveObject(NSData *data, UIImage *image) {
         }
     }
     
-    BOOL shouldQueryMemoryOnly = (queryCacheType == SDImageCacheTypeMemory) || (image && !(options & SDImageCacheQueryMemoryData));
+    BOOL shouldQueryMemoryOnly = (queryCacheType == SDImageCacheTypeMemory) || (image && !(options & SDWebImageQueryMemoryData));
     if (shouldQueryMemoryOnly) {
         if (doneBlock) {
             doneBlock(image, nil, SDImageCacheTypeMemory);
@@ -147,8 +133,8 @@ static void SDYYPluginArchiveObject(NSData *data, UIImage *image) {
     // Check whether we need to synchronously query disk
     // 1. in-memory cache hit & memoryDataSync
     // 2. in-memory cache miss & diskDataSync
-    BOOL shouldQueryDiskSync = ((image && options & SDImageCacheQueryMemoryDataSync) ||
-                                (!image && options & SDImageCacheQueryDiskDataSync));
+    BOOL shouldQueryDiskSync = ((image && options & SDWebImageQueryMemoryDataSync) ||
+                                (!image && options & SDWebImageQueryDiskDataSync));
     NSData* (^queryDiskDataBlock)(void) = ^NSData* {
         @synchronized (operation) {
             if (operation.isCancelled) {
