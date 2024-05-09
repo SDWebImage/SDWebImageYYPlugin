@@ -12,4 +12,7 @@
 /// YYCache category to support `SDImageCache` protocol. This allow user who prefer YYCache to be used as SDWebImage's custom image cache
 @interface YYCache (SDAdditions) <SDImageCache>
 
+/// Cache Config object - storing all kind of settings.
+@property (nonatomic, strong, readonly, nonnull) SDImageCacheConfig *config;
+
 @end

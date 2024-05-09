@@ -9,13 +9,76 @@
 #import "YYCache+SDAdditions.h"
 #import "YYMemoryCache+SDAdditions.h"
 #import "YYDiskCache+SDAdditions.h"
+#import "SDImageTransformer.h" // TODO, remove this
+#import <objc/runtime.h>
 
-static void SDYYPluginUnarchiveObject(NSData *data, UIImage *image) {
-    if (!data || !image) {
+// TODO, remove this
+static BOOL SDIsThumbnailKey(NSString *key) {
+    if ([key rangeOfString:@"-Thumbnail("].location != NSNotFound) {
+        return YES;
+    }
+    return NO;
+}
+
+@implementation YYCache (SDAdditions)
+
+- (SDImageCacheConfig *)config {
+    // Provided the default one
+    SDImageCacheConfig *config = objc_getAssociatedObject(self, @selector(config));
+    if (!config) {
+        config = SDImageCacheConfig.defaultCacheConfig;
+        config.shouldDisableiCloud
+        [self setConfig:config];
+    }
+    return config;
+}
+
+- (void)setConfig:(SDImageCacheConfig *)config {
+    objc_setAssociatedObject(self, @selector(config), config, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)_syncDiskToMemoryWithImage:(UIImage *)diskImage forKey:(NSString *)key {
+    // earily check
+    if (!self.config.shouldCacheImagesInMemory) {
+        return;
+    }
+    if (!diskImage) {
+        return;
+    }
+    // The disk -> memory sync logic, which should only store thumbnail image with thumbnail key
+    // However, caller (like SDWebImageManager) will query full key, with thumbnail size, and get thubmnail image
+    // We should add a check here, currently it's a hack
+    if (diskImage.sd_isThumbnail && !SDIsThumbnailKey(key)) {
+        SDImageCoderOptions *options = diskImage.sd_decodeOptions;
+        CGSize thumbnailSize = CGSizeZero;
+        NSValue *thumbnailSizeValue = options[SDImageCoderDecodeThumbnailPixelSize];
+        if (thumbnailSizeValue != nil) {
+    #if SD_MAC
+            thumbnailSize = thumbnailSizeValue.sizeValue;
+    #else
+            thumbnailSize = thumbnailSizeValue.CGSizeValue;
+    #endif
+        }
+        BOOL preserveAspectRatio = YES;
+        NSNumber *preserveAspectRatioValue = options[SDImageCoderDecodePreserveAspectRatio];
+        if (preserveAspectRatioValue != nil) {
+            preserveAspectRatio = preserveAspectRatioValue.boolValue;
+        }
+        // Calculate the actual thumbnail key
+        NSString *thumbnailKey = SDThumbnailedKeyForKey(key, thumbnailSize, preserveAspectRatio);
+        // Override the sync key
+        key = thumbnailKey;
+    }
+    NSUInteger cost = diskImage.sd_memoryCost;
+    [self.memoryCache setObject:diskImage forKey:key cost:cost];
+}
+
+- (void)_unarchiveObjectWithImage:(UIImage *)image forKey:(NSString *)key {
+    if (!image || !key) {
         return;
     }
     // Check extended data
-    NSData *extendedData = [YYDiskCache getExtendedDataFromObject:data];
+    NSData *extendedData = [self.diskCache extendedDataForKey:key];
     if (!extendedData) {
         return;
     }
@@ -41,8 +104,8 @@ static void SDYYPluginUnarchiveObject(NSData *data, UIImage *image) {
     image.sd_extendedObject = extendedObject;
 }
 
-static void SDYYPluginArchiveObject(NSData *data, UIImage *image) {
-    if (!data || !image) {
+- (void)_archivedDataWithImage:(UIImage *)image forKey:(NSString *)key {
+    if (!image || !key) {
         return;
     }
     // Check extended data
@@ -68,11 +131,9 @@ static void SDYYPluginArchiveObject(NSData *data, UIImage *image) {
         }
     }
     if (extendedData) {
-        [YYDiskCache setExtendedData:extendedData toObject:data];
+        [self.diskCache setExtendedData:extendedData forKey:key];
     }
 }
-
-@implementation YYCache (SDAdditions)
 
 - (id<SDWebImageOperation>)queryImageForKey:(NSString *)key options:(SDWebImageOptions)options context:(SDWebImageContext *)context completion:(SDImageCacheQueryCompletionBlock)doneBlock {
     return [self queryImageForKey:key options:options context:context cacheType:SDImageCacheTypeAll completion:doneBlock];
@@ -102,7 +163,7 @@ static void SDYYPluginArchiveObject(NSData *data, UIImage *image) {
     if (image) {
         if (options & SDWebImageDecodeFirstFrameOnly) {
             // Ensure static image
-            if (image.sd_isAnimated) {
+            if (image.sd_imageFrameCount > 1) {
 #if SD_MAC
                 image = [[NSImage alloc] initWithCGImage:image.CGImage scale:image.scale orientation:kCGImagePropertyOrientationUp];
 #else
@@ -156,30 +217,23 @@ static void SDYYPluginArchiveObject(NSData *data, UIImage *image) {
             // the image is from in-memory cache, but need image data
             diskImage = image;
         } else if (diskData) {
-            BOOL shouldCacheToMomery = YES;
+            BOOL shouldCacheToMemory = YES;
             if (context[SDWebImageContextStoreCacheType]) {
                 SDImageCacheType cacheType = [context[SDWebImageContextStoreCacheType] integerValue];
-                shouldCacheToMomery = (cacheType == SDImageCacheTypeAll || cacheType == SDImageCacheTypeMemory);
+                shouldCacheToMemory = (cacheType == SDImageCacheTypeAll || cacheType == SDImageCacheTypeMemory);
             }
-            CGSize thumbnailSize = CGSizeZero;
-            NSValue *thumbnailSizeValue = context[SDWebImageContextImageThumbnailPixelSize];
-            if (thumbnailSizeValue != nil) {
-        #if SD_MAC
-                thumbnailSize = thumbnailSizeValue.sizeValue;
-        #else
-                thumbnailSize = thumbnailSizeValue.CGSizeValue;
-        #endif
-            }
-            if (thumbnailSize.width > 0 && thumbnailSize.height > 0) {
-                // Query full size cache key which generate a thumbnail, should not write back to full size memory cache
-                shouldCacheToMomery = NO;
+            // Special case: If user query image in list for the same URL, to avoid decode and write **same** image object into disk cache multiple times, we query and check memory cache here again.
+            if (shouldCacheToMemory && self.config.shouldCacheImagesInMemory) {
+                diskImage = [self.memoryCache objectForKey:key];
             }
             // decode image data only if in-memory cache missed
-            diskImage = SDImageCacheDecodeImageData(diskData, key, options, context);
-            SDYYPluginUnarchiveObject(diskData, diskImage);
-            if (shouldCacheToMomery && diskImage) {
-                NSUInteger cost = diskImage.sd_memoryCost;
-                [self.memoryCache setObject:diskImage forKey:key cost:cost];
+            if (!diskImage) {
+                diskImage = SDImageCacheDecodeImageData(diskData, key, options, context);
+                [self _unarchiveObjectWithImage:diskImage forKey:key];
+                // check if we need sync logic
+                if (shouldCacheToMemory) {
+                    [self _syncDiskToMemoryWithImage:diskImage forKey:key];
+                }
             }
         }
         return diskImage;
@@ -264,8 +318,8 @@ static void SDYYPluginArchiveObject(NSData *data, UIImage *image) {
                 }
             }
             NSData *data = [[SDImageCodersManager sharedManager] encodedDataWithImage:image format:format options:context[SDWebImageContextImageEncodeOptions]];
-            SDYYPluginArchiveObject(data, image);
             [self.diskCache setObject:data forKey:key withBlock:^{
+                [self _archivedDataWithImage:image forKey:key];
                 if (completionBlock) {
                     [(queue ?: SDCallbackQueue.mainQueue) async:^{
                         completionBlock();
@@ -274,8 +328,8 @@ static void SDYYPluginArchiveObject(NSData *data, UIImage *image) {
             }];
         });
     } else {
-        SDYYPluginArchiveObject(data, image);
         [self.diskCache setObject:data forKey:key withBlock:^{
+            [self _archivedDataWithImage:image forKey:key];
             if (completionBlock) {
                 [(queue ?: SDCallbackQueue.mainQueue) async:^{
                     completionBlock();

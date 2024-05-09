@@ -11,6 +11,7 @@
 /// YYMemoryCache category to support `SDMemoryCache` protocol. This allow user who prefer YYMemoryCache to be used as SDWebImage's custom memory cache
 @interface YYMemoryCache (SDAdditions) <SDMemoryCache>
 
+/// Cache Config object - storing all kind of settings.
 @property (nonatomic, strong, readonly, nullable) SDImageCacheConfig *config;
 
 @end
