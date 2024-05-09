@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SDWebImageYYPlugin'
-  s.version          = '0.8.2'
+  s.version          = '0.9.0'
   s.summary          = 'A SDWebImage plugin to integrate YYImage & YYCache for image rendering & caching.'
 
 # This description is used to generate tags and improve search results.
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+A SDWebImage plugin to integrate YYImage & YYCache for image rendering & caching.
                        DESC
 
   s.homepage         = 'https://github.com/SDWebImage/SDWebImageYYPlugin'

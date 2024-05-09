@@ -27,7 +27,6 @@ static BOOL SDIsThumbnailKey(NSString *key) {
     SDImageCacheConfig *config = objc_getAssociatedObject(self, @selector(config));
     if (!config) {
         config = SDImageCacheConfig.defaultCacheConfig;
-        config.shouldDisableiCloud
         [self setConfig:config];
     }
     return config;
