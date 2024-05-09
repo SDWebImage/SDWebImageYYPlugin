@@ -10,8 +10,6 @@
 
 @interface YYDiskCache ()
 
-@property (nonatomic, strong, nullable) SDImageCacheConfig *sd_config;
-
 // Internal Headers
 - (NSString *)_filenameForKey:(NSString *)key;
 
@@ -19,12 +17,12 @@
 
 @implementation YYDiskCache (SDAdditions)
 
-- (SDImageCacheConfig *)sd_config {
-    return objc_getAssociatedObject(self, @selector(sd_config));
+- (SDImageCacheConfig *)config {
+    return objc_getAssociatedObject(self, @selector(config));
 }
 
-- (void)setSd_config:(SDImageCacheConfig *)sd_config {
-    objc_setAssociatedObject(self, @selector(sd_config), sd_config, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setConfig:(SDImageCacheConfig *)config {
+    objc_setAssociatedObject(self, @selector(config), config, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma mark - SDDiskCache
@@ -32,7 +30,9 @@
 - (instancetype)initWithCachePath:(NSString *)cachePath config:(SDImageCacheConfig *)config {
     self = [self initWithPath:cachePath inlineThreshold:0];
     if (self) {
-        self.sd_config = config;
+        self.config = config;
+        self.ageLimit = config.maxDiskAge;
+        self.costLimit = config.maxDiskSize;
     }
     return self;
 }
@@ -78,8 +78,8 @@
 }
 
 - (void)removeExpiredData {
-    NSTimeInterval ageLimit = self.sd_config.maxDiskAge;
-    NSUInteger sizeLimit = self.sd_config.maxDiskSize;
+    NSTimeInterval ageLimit = self.config.maxDiskAge;
+    NSUInteger sizeLimit = self.config.maxDiskSize;
     
     [self trimToAge:ageLimit];
     [self trimToCost:sizeLimit];

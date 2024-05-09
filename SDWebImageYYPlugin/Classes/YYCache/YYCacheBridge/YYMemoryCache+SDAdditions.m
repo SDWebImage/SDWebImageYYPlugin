@@ -8,20 +8,14 @@
 #import "YYMemoryCache+SDAdditions.h"
 #import <objc/runtime.h>
 
-@interface YYMemoryCache ()
-
-@property (nonatomic, strong, nullable) SDImageCacheConfig *sd_config;
-
-@end
-
 @implementation YYMemoryCache (SDAdditions)
 
-- (SDImageCacheConfig *)sd_config {
-    return objc_getAssociatedObject(self, @selector(sd_config));
+- (SDImageCacheConfig *)config {
+    return objc_getAssociatedObject(self, @selector(config));
 }
 
-- (void)setSd_config:(SDImageCacheConfig *)sd_config {
-    objc_setAssociatedObject(self, @selector(sd_config), sd_config, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setConfig:(SDImageCacheConfig *)config {
+    objc_setAssociatedObject(self, @selector(config), config, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma mark - SDMemoryCache
@@ -29,7 +23,7 @@
 - (instancetype)initWithConfig:(SDImageCacheConfig *)config {
     self = [self init];
     if (self) {
-        self.sd_config = config;
+        self.config = config;
         self.countLimit = config.maxMemoryCount;
         self.costLimit = config.maxMemoryCost;
     }
