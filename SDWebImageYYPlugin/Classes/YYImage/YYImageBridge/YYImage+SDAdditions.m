@@ -19,6 +19,8 @@ static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
             return SDImageFormatGIF;
         case YYImageTypeTIFF:
             return SDImageFormatTIFF;
+        case YYImageTypeBMP:
+            return SDImageFormatBMP;
         case YYImageTypeWebP:
             return SDImageFormatWebP;
         default:
@@ -57,6 +59,10 @@ static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
     return self.preloadAllAnimatedImageFrames;
 }
 
+- (SDImageFormat)animatedImageFormat {
+    return SDImageFormatFromYYImageType(self.animatedImageType);
+}
+
 @end
 
 @implementation YYImage (MemoryCacheCost)
@@ -86,7 +92,7 @@ static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
 @implementation YYImage (Metadata)
 
 - (BOOL)sd_isAnimated {
-    return YES;
+    return self.animatedImageFrameCount > 1;
 }
 
 - (NSUInteger)sd_imageLoopCount {
@@ -97,8 +103,22 @@ static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
     return;
 }
 
+- (NSUInteger)sd_imageFrameCount {
+    NSUInteger frameCount = self.animatedImageFrameCount;
+    if (frameCount > 1) {
+        return frameCount;
+    } else {
+        return 1;
+    }
+}
+
 - (SDImageFormat)sd_imageFormat {
-    return SDImageFormatFromYYImageType(self.animatedImageType);
+    NSData *animatedImageData = self.animatedImageData;
+    if (animatedImageData) {
+        return self.animatedImageFormat;
+    } else {
+        return [super sd_imageFormat];
+    }
 }
 
 - (void)setSd_imageFormat:(SDImageFormat)sd_imageFormat {
@@ -107,6 +127,72 @@ static inline SDImageFormat SDImageFormatFromYYImageType(YYImageType type) {
 
 - (BOOL)sd_isVector {
     return NO;
+}
+
+@end
+
+@implementation YYImage (MultiFormat)
+
++ (nullable UIImage *)sd_imageWithData:(nullable NSData *)data {
+    return [self sd_imageWithData:data scale:1];
+}
+
++ (nullable UIImage *)sd_imageWithData:(nullable NSData *)data scale:(CGFloat)scale {
+    return [self sd_imageWithData:data scale:scale firstFrameOnly:NO];
+}
+
++ (nullable UIImage *)sd_imageWithData:(nullable NSData *)data scale:(CGFloat)scale firstFrameOnly:(BOOL)firstFrameOnly {
+    if (!data) {
+        return nil;
+    }
+    return [[self alloc] initWithData:data scale:scale options:@{SDImageCoderDecodeFirstFrameOnly : @(firstFrameOnly)}];
+}
+
+- (nullable NSData *)sd_imageData {
+    NSData *imageData = self.animatedImageData;
+    if (imageData) {
+        return imageData;
+    } else {
+        return [self sd_imageDataAsFormat:self.animatedImageFormat];
+    }
+}
+
+- (nullable NSData *)sd_imageDataAsFormat:(SDImageFormat)imageFormat {
+    return [self sd_imageDataAsFormat:imageFormat compressionQuality:1];
+}
+
+- (nullable NSData *)sd_imageDataAsFormat:(SDImageFormat)imageFormat compressionQuality:(double)compressionQuality {
+    return [self sd_imageDataAsFormat:imageFormat compressionQuality:compressionQuality firstFrameOnly:NO];
+}
+
+- (nullable NSData *)sd_imageDataAsFormat:(SDImageFormat)imageFormat compressionQuality:(double)compressionQuality firstFrameOnly:(BOOL)firstFrameOnly {
+    // Protect when user input the imageFormat == self.animatedImageFormat && compressionQuality == 1
+    // This should be treated as grabbing `self.animatedImageData` as well :)
+    NSData *imageData;
+    if (imageFormat == self.animatedImageFormat && compressionQuality == 1) {
+        imageData = self.animatedImageData;
+    }
+    if (imageData) return imageData;
+    
+    SDImageCoderOptions *options = @{SDImageCoderEncodeCompressionQuality : @(compressionQuality), SDImageCoderEncodeFirstFrameOnly : @(firstFrameOnly)};
+    NSUInteger frameCount = self.animatedImageFrameCount;
+    if (frameCount <= 1) {
+        // Static image
+        imageData = [SDImageCodersManager.sharedManager encodedDataWithImage:self format:imageFormat options:options];
+    }
+    if (imageData) return imageData;
+    
+    NSUInteger loopCount = self.animatedImageLoopCount;
+    // Keep animated image encoding, loop each frame.
+    NSMutableArray<SDImageFrame *> *frames = [NSMutableArray arrayWithCapacity:frameCount];
+    for (size_t i = 0; i < frameCount; i++) {
+        UIImage *image = [self animatedImageFrameAtIndex:i];
+        NSTimeInterval duration = [self animatedImageDurationAtIndex:i];
+        SDImageFrame *frame = [SDImageFrame frameWithImage:image duration:duration];
+        [frames addObject:frame];
+    }
+    imageData = [SDImageCodersManager.sharedManager encodedDataWithFrames:frames loopCount:loopCount format:imageFormat options:options];
+    return imageData;
 }
 
 @end
