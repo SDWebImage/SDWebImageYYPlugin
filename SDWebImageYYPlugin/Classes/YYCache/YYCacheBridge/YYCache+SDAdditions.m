@@ -9,7 +9,6 @@
 #import "YYCache+SDAdditions.h"
 #import "YYMemoryCache+SDAdditions.h"
 #import "YYDiskCache+SDAdditions.h"
-#import "SDImageTransformer.h" // TODO, remove this
 #import <objc/runtime.h>
 
 // TODO, remove this
